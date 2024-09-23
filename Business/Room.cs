@@ -41,6 +41,8 @@ namespace BookingSystem.Business
         {
             get { return roomType; }
         }
+
+        public double DailyRate {get {return dailyRate;} set { dailyRate = value; } }
         #endregion
 
         #region Other Methods

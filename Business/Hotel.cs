@@ -7,18 +7,49 @@ namespace BookingSystem.Business
 
     public class Hotel
     {
+        #region Field Members
         private string hotelID;
         private string hotelName;
-        private int numOfRooms; // This must be indicated as a derived variable
         private Collection<Room> rooms; // All the rooms in the hotel
         private Collection<Room> availableRooms;
+        #endregion
+
+        #region Property Methods
+        public string HotelID
+        {
+            get { return hotelID; }
+            set { hotelID = value; }
+        }
+
+        public string HotelName
+        {
+            get { return hotelName; }
+            set { hotelName = value; }
+        }
+
+        public int NumOfRooms
+        {
+            get { return rooms.Count; }  // Derived from the size of the rooms collection
+        }
+
+        public Collection<Room> Rooms
+        {
+            get { return rooms; }
+            set { rooms = value; }
+        }
+
+        public Collection<Room> AvailableRooms
+        {
+            get { return availableRooms; }
+            set { availableRooms = value; }
+        }
+        #endregion
 
         #region Constructor
         public Hotel(string ID, string name)
         {
             hotelID = ID;
             hotelName = name;
-            numOfRooms = 0; // The rooms will be later populated 
         }
         #endregion
 
@@ -26,7 +57,6 @@ namespace BookingSystem.Business
         public void addRoom(Room room)
         {
             rooms.Add(room);
-            numOfRooms++;
         }
         #endregion
     }
