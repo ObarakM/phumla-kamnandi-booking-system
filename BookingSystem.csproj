@@ -50,6 +50,12 @@
     <Compile Include="Business\Hotel.cs" />
     <Compile Include="Business\Reservation.cs" />
     <Compile Include="Business\Room.cs" />
+    <Compile Include="Presentation\BookingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\BookingsForm.Designer.cs">
+      <DependentUpon>BookingsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\PhumlaKamnandiHotelForm .cs">
       <SubType>Form</SubType>
     </Compile>

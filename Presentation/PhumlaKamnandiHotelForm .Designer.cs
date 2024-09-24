@@ -100,6 +100,7 @@
             this.bookingsButton.TabIndex = 3;
             this.bookingsButton.Text = "Manage Bookings";
             this.bookingsButton.UseVisualStyleBackColor = false;
+            this.bookingsButton.Click += new System.EventHandler(this.bookingsButton_Click);
             // 
             // PhumlaKamnandiHotelForm
             // 
@@ -112,7 +113,7 @@
             this.Controls.Add(this.reservationButton);
             this.Controls.Add(this.header);
             this.Name = "PhumlaKamnandiHotelForm";
-            this.Text = "Form1";
+            this.Text = "PhumlaKamnandiHotelForm";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
