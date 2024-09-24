@@ -63,6 +63,16 @@ namespace BookingSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Apartment {
+            get {
+                object obj = ResourceManager.GetObject("Apartment", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap architecture_2590121 {
             get {
                 object obj = ResourceManager.GetObject("architecture-2590121", resourceCulture);
@@ -93,6 +103,26 @@ namespace BookingSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ExecutiveRoom {
+            get {
+                object obj = ResourceManager.GetObject("ExecutiveRoom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap FamilyRoom {
+            get {
+                object obj = ResourceManager.GetObject("FamilyRoom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pexels_soulful_pizza_2080276_3914755 {
             get {
                 object obj = ResourceManager.GetObject("pexels-soulful-pizza-2080276-3914755", resourceCulture);
@@ -106,6 +136,16 @@ namespace BookingSystem.Properties {
         internal static System.Drawing.Bitmap pexels_zachtheshoota_1838640 {
             get {
                 object obj = ResourceManager.GetObject("pexels-zachtheshoota-1838640", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Studio {
+            get {
+                object obj = ResourceManager.GetObject("Studio", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

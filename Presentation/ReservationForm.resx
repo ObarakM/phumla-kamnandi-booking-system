@@ -117,32 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Studio" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\Studio.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>Lorem ipsum odor amet, consectetuer adipiscing elit. Sociosqu velit suspendisse quam; maecenas urna tempus faucibus eros. Vivamus montes netus mus sagittis tempor sollicitudin felis. Himenaeos eleifend ligula consequat quis morbi commodo nisi natoque cubilia. Iaculis molestie ipsum fusce commodo; est potenti convallis! Est nec enim libero mi nunc lorem sociosqu litora. Vestibulum libero sit urna accumsan hac vitae mus. Taciti auctor ante tortor varius sociosqu eleifend amet? Viverra natoque finibus augue luctus pellentesque eget. Elementum quisque ex nulla sagittis vulputate lectus aliquam.
+</value>
   </data>
-  <data name="architecture-2590121" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\architecture-2590121.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="textBox2.Text" xml:space="preserve">
+    <value>Lorem ipsum odor amet, consectetuer adipiscing elit. Sociosqu velit suspendisse quam; maecenas urna tempus faucibus eros. Vivamus montes netus mus sagittis tempor sollicitudin felis. Himenaeos eleifend ligula consequat quis morbi commodo nisi natoque cubilia. Iaculis molestie ipsum fusce commodo; est potenti convallis! Est nec enim libero mi nunc lorem sociosqu litora. Vestibulum libero sit urna accumsan hac vitae mus. Taciti auctor ante tortor varius sociosqu eleifend amet? Viverra natoque finibus augue luctus pellentesque eget. Elementum quisque ex nulla sagittis vulputate lectus aliquam.
+</value>
   </data>
-  <data name="FamilyRoom" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\FamilyRoom.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="textBox3.Text" xml:space="preserve">
+    <value>Lorem ipsum odor amet, consectetuer adipiscing elit. Sociosqu velit suspendisse quam; maecenas urna tempus faucibus eros. Vivamus montes netus mus sagittis tempor sollicitudin felis. Himenaeos eleifend ligula consequat quis morbi commodo nisi natoque cubilia. Iaculis molestie ipsum fusce commodo; est potenti convallis! Est nec enim libero mi nunc lorem sociosqu litora. Vestibulum libero sit urna accumsan hac vitae mus. Taciti auctor ante tortor varius sociosqu eleifend amet? Viverra natoque finibus augue luctus pellentesque eget. Elementum quisque ex nulla sagittis vulputate lectus aliquam.
+</value>
   </data>
-  <data name="pexels-soulful-pizza-2080276-3914755" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\pexels-soulful-pizza-2080276-3914755.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ExecutiveRoom" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\ExecutiveRoom.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="pexels-zachtheshoota-1838640" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\pexels-zachtheshoota-1838640.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="castle-4931672" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\castle-4931672.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="architecture-25901211" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\architecture-2590121.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Apartment" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Images\Apartment.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="textBox4.Text" xml:space="preserve">
+    <value>Lorem ipsum odor amet, consectetuer adipiscing elit. Sociosqu velit suspendisse quam; maecenas urna tempus faucibus eros. Vivamus montes netus mus sagittis tempor sollicitudin felis. Himenaeos eleifend ligula consequat quis morbi commodo nisi natoque cubilia. Iaculis molestie ipsum fusce commodo; est potenti convallis! Est nec enim libero mi nunc lorem sociosqu litora. Vestibulum libero sit urna accumsan hac vitae mus. Taciti auctor ante tortor varius sociosqu eleifend amet? Viverra natoque finibus augue luctus pellentesque eget. Elementum quisque ex nulla sagittis vulputate lectus aliquam.
+</value>
   </data>
 </root>
