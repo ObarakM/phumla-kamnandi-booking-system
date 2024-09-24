@@ -50,14 +50,17 @@
     <Compile Include="Business\Hotel.cs" />
     <Compile Include="Business\Reservation.cs" />
     <Compile Include="Business\Room.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Presentation\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Presentation\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Presentation\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -66,6 +69,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -79,6 +83,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\Apartment.jpg" />
+    <None Include="Images\castle-4931672.jpg" />
+    <None Include="Images\architecture-2590121.jpg" />
+    <Content Include="Images\Deluxe.jpg" />
+    <Content Include="Images\executive.jpg" />
+    <Content Include="Images\ExecutiveRoom.jpeg" />
+    <Content Include="Images\FamilyRoom.jpeg" />
+    <None Include="Images\pexels-soulful-pizza-2080276-3914755.jpg" />
+    <Content Include="Images\pexels-zachtheshoota-1838640.jpg" />
+    <Content Include="Images\Studio.jpeg" />
+    <Content Include="Images\Suite.jpeg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
