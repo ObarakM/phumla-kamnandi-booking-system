@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BookingSystem.Presentation
 {
-    public partial class Form1 : Form
+    public partial class PhumlaKamnandiHotelForm  : Form
     {
-        public Form1()
+        public PhumlaKamnandiHotelForm()
         {
             InitializeComponent();
             
@@ -31,6 +31,12 @@ namespace BookingSystem.Presentation
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void reservationButton_Click(object sender, EventArgs e)
+        {
+            ReservationForm reservationForm = new ReservationForm();
+            reservationForm.Show();
         }
     }
 }

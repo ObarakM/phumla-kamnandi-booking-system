@@ -50,11 +50,11 @@
     <Compile Include="Business\Hotel.cs" />
     <Compile Include="Business\Reservation.cs" />
     <Compile Include="Business\Room.cs" />
-    <Compile Include="Presentation\Form1.cs">
+    <Compile Include="Presentation\PhumlaKamnandiHotelForm .cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Presentation\PhumlaKamnandiHotelForm .Designer.cs">
+      <DependentUpon>PhumlaKamnandiHotelForm .cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation\ReservationForm.cs">
       <SubType>Form</SubType>
@@ -64,8 +64,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Presentation\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Presentation\PhumlaKamnandiHotelForm .resx">
+      <DependentUpon>PhumlaKamnandiHotelForm .cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\ReservationForm.resx">
       <DependentUpon>ReservationForm.cs</DependentUpon>

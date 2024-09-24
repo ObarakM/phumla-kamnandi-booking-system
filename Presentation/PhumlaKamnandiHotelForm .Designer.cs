@@ -1,6 +1,6 @@
 ﻿namespace BookingSystem.Presentation
 {
-    partial class Form1
+    partial class PhumlaKamnandiHotelForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PhumlaKamnandiHotelForm));
             this.header = new System.Windows.Forms.Label();
             this.reservationButton = new System.Windows.Forms.Button();
             this.reportButton = new System.Windows.Forms.Button();
@@ -44,7 +44,7 @@
             this.header.Font = new System.Drawing.Font("Lucida Calligraphy", 56.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.header.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.header.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.header.Location = new System.Drawing.Point(60, 9);
+            this.header.Location = new System.Drawing.Point(235, 35);
             this.header.Name = "header";
             this.header.Size = new System.Drawing.Size(1356, 97);
             this.header.TabIndex = 0;
@@ -60,12 +60,13 @@
             this.reservationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.reservationButton.Font = new System.Drawing.Font("Lucida Calligraphy", 32.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reservationButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.reservationButton.Location = new System.Drawing.Point(225, 189);
+            this.reservationButton.Location = new System.Drawing.Point(225, 575);
             this.reservationButton.Name = "reservationButton";
             this.reservationButton.Size = new System.Drawing.Size(315, 136);
             this.reservationButton.TabIndex = 1;
             this.reservationButton.Text = "Make Reservation";
             this.reservationButton.UseVisualStyleBackColor = false;
+            this.reservationButton.Click += new System.EventHandler(this.reservationButton_Click);
             // 
             // reportButton
             // 
@@ -76,7 +77,7 @@
             this.reportButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.reportButton.Font = new System.Drawing.Font("Lucida Calligraphy", 32.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reportButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.reportButton.Location = new System.Drawing.Point(968, 189);
+            this.reportButton.Location = new System.Drawing.Point(1317, 575);
             this.reportButton.Name = "reportButton";
             this.reportButton.Size = new System.Drawing.Size(315, 136);
             this.reportButton.TabIndex = 2;
@@ -93,25 +94,24 @@
             this.bookingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bookingsButton.Font = new System.Drawing.Font("Lucida Calligraphy", 32.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bookingsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.bookingsButton.Location = new System.Drawing.Point(599, 189);
+            this.bookingsButton.Location = new System.Drawing.Point(774, 575);
             this.bookingsButton.Name = "bookingsButton";
             this.bookingsButton.Size = new System.Drawing.Size(315, 136);
             this.bookingsButton.TabIndex = 3;
             this.bookingsButton.Text = "Manage Bookings";
             this.bookingsButton.UseVisualStyleBackColor = false;
             // 
-            // Form1
+            // PhumlaKamnandiHotelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::BookingSystem.Properties.Resources.castle_4931672;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1501, 561);
+            this.ClientSize = new System.Drawing.Size(1850, 947);
             this.Controls.Add(this.bookingsButton);
             this.Controls.Add(this.reportButton);
             this.Controls.Add(this.reservationButton);
             this.Controls.Add(this.header);
-            this.Name = "Form1";
+            this.Name = "PhumlaKamnandiHotelForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
