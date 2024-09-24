@@ -16,5 +16,10 @@ namespace BookingSystem.Presentation
         {
             InitializeComponent();
         }
+
+        private void BookingsForm_Load(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
+        }
     }
 }

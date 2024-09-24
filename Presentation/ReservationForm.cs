@@ -19,7 +19,7 @@ namespace BookingSystem.Presentation
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)

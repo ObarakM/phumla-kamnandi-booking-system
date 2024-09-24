@@ -30,7 +30,7 @@ namespace BookingSystem.Presentation
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void reservationButton_Click(object sender, EventArgs e)

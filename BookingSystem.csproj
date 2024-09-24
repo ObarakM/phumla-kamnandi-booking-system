@@ -70,6 +70,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Presentation\BookingsForm.resx">
+      <DependentUpon>BookingsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\PhumlaKamnandiHotelForm .resx">
       <DependentUpon>PhumlaKamnandiHotelForm .cs</DependentUpon>
     </EmbeddedResource>
