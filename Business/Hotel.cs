@@ -8,7 +8,7 @@ namespace BookingSystem.Business
     public class Hotel
     {
         #region Field Members
-        private string hotelID;
+        private int hotelID;
         private string hotelName;
         private Collection<Room> rooms; // All the rooms in the hotel
         private Collection<Room> availableRooms;
