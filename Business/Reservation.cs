@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Data.SqlTypes;
 
 namespace BookingSystem.Business
@@ -7,7 +8,7 @@ namespace BookingSystem.Business
 	{
         #region Field Members
 		private Guest guest; // A reference to the respective guest
-		private Room room; // The reference to the respective room
+		private Collection<Room> rooms; // The reference to the respective rooms booked by the guest
 		private DateTime checkIn;
         private DateTime checkOut;
 
@@ -23,7 +24,7 @@ namespace BookingSystem.Business
         public DateTime CheckOut { get { return checkOut; } set { checkOut = value; } }
 
         public double CostOfStay { get { return costOfStay; } set { costOfStay = value; } }
-        #endregion
+        #endregion 
 
         #region Constructors
         public Reservation(Guest guest, Room room, DateTime checkIn, DateTime checkOut)

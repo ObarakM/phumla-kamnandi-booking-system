@@ -33,9 +33,9 @@ namespace BookingSystem.Business
         #endregion
 
         #region Methods
-        public void addReservation()
+        public void addReservation(Reservation reservation)
         {
-
+            reservations.Add(reservation);
         }
         #endregion
     }
