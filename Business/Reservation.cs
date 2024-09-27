@@ -11,7 +11,6 @@ namespace BookingSystem.Business
 		private Collection<Room> rooms; // The reference to the respective rooms booked by the guest
 		private DateTime checkIn;
         private DateTime checkOut;
-        private Room room;
 
 		private double costOfStay; // To be derived based and room type and stay duration 
         #endregion
@@ -19,7 +18,7 @@ namespace BookingSystem.Business
         #region Property Methods
         public Guest Guest { get { return guest; } set { guest = value; } }
 
-        public Room Room { get { return room; } set { room = value; } }
+        public Collection<Room> Rooms { get { return rooms; } set { rooms = value; } }
 
         public DateTime CheckIn { get { return checkIn; } set { checkIn = value; } }
         public DateTime CheckOut { get { return checkOut; } set { checkOut = value; } }
@@ -28,16 +27,14 @@ namespace BookingSystem.Business
         #endregion 
 
         #region Constructors
-        public Reservation(Guest guest, Room room, DateTime checkIn, DateTime checkOut)
+        public Reservation(Guest guest, Collection<Room> rooms, DateTime checkIn, DateTime checkOut, double costOfStay)
 		{
             this.guest = guest;
-            this.room = room;
+            this.rooms = rooms;
             this.checkIn = checkIn;
             this.checkOut = checkOut;
 
-            // Calculate the total costOfStay
-            int numberOfDays = (checkOut - checkIn).Days;
-            costOfStay = numberOfDays * room.DailyRate;
+            this.costOfStay = costOfStay;
 		}
         #endregion
 
