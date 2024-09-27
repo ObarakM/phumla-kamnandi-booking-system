@@ -11,6 +11,7 @@ namespace BookingSystem.Business
 		private Collection<Room> rooms; // The reference to the respective rooms booked by the guest
 		private DateTime checkIn;
         private DateTime checkOut;
+        private Room room;
 
 		private double costOfStay; // To be derived based and room type and stay duration 
         #endregion

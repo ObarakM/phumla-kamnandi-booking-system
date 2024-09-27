@@ -54,6 +54,8 @@
             this.button4 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.button5 = new System.Windows.Forms.Button();
+            this.employeeListView = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -72,7 +74,7 @@
             this.header.Font = new System.Drawing.Font("Lucida Calligraphy", 56.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.header.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.header.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.header.Location = new System.Drawing.Point(155, 9);
+            this.header.Location = new System.Drawing.Point(181, 9);
             this.header.Name = "header";
             this.header.Size = new System.Drawing.Size(1356, 97);
             this.header.TabIndex = 1;
@@ -351,13 +353,37 @@
             this.dateTimePicker2.Size = new System.Drawing.Size(170, 31);
             this.dateTimePicker2.TabIndex = 35;
             // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.Transparent;
+            this.button5.BackgroundImage = global::BookingSystem.Properties.Resources.pexels_soulful_pizza_2080276_3914755;
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button5.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.ForeColor = System.Drawing.SystemColors.Control;
+            this.button5.Location = new System.Drawing.Point(1538, 492);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(159, 45);
+            this.button5.TabIndex = 37;
+            this.button5.Text = "Finish Booking";
+            this.button5.UseVisualStyleBackColor = false;
+            // 
+            // employeeListView
+            // 
+            this.employeeListView.HideSelection = false;
+            this.employeeListView.Location = new System.Drawing.Point(1285, 175);
+            this.employeeListView.Name = "employeeListView";
+            this.employeeListView.Size = new System.Drawing.Size(412, 275);
+            this.employeeListView.TabIndex = 38;
+            this.employeeListView.UseCompatibleStateImageBehavior = false;
+            // 
             // ReservationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::BookingSystem.Properties.Resources.pexels_soulful_pizza_2080276_3914755;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1672, 1012);
+            this.ClientSize = new System.Drawing.Size(1724, 1012);
+            this.Controls.Add(this.employeeListView);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.button4);
@@ -425,5 +451,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ListView employeeListView;
     }
 }
