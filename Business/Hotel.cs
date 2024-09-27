@@ -15,7 +15,7 @@ namespace BookingSystem.Business
         #endregion
 
         #region Property Methods
-        public string HotelID
+        public int HotelID
         {
             get { return hotelID; }
             set { hotelID = value; }
@@ -46,7 +46,7 @@ namespace BookingSystem.Business
         #endregion
 
         #region Constructor
-        public Hotel(string ID, string name)
+        public Hotel(int ID, string name)
         {
             hotelID = ID;
             hotelName = name;
