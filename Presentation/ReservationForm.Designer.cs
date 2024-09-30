@@ -74,7 +74,7 @@
             this.header.Font = new System.Drawing.Font("Lucida Calligraphy", 56.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.header.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.header.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.header.Location = new System.Drawing.Point(181, 9);
+            this.header.Location = new System.Drawing.Point(242, 9);
             this.header.Name = "header";
             this.header.Size = new System.Drawing.Size(1356, 97);
             this.header.TabIndex = 1;
@@ -126,7 +126,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Lucida Sans Unicode", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label1.Location = new System.Drawing.Point(343, 362);
+            this.label1.Location = new System.Drawing.Point(90, 364);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 25);
             this.label1.TabIndex = 6;
@@ -135,7 +135,7 @@
             // 
             this.numericUpDown1.Font = new System.Drawing.Font("Lucida Sans Unicode", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numericUpDown1.ForeColor = System.Drawing.Color.Black;
-            this.numericUpDown1.Location = new System.Drawing.Point(744, 410);
+            this.numericUpDown1.Location = new System.Drawing.Point(491, 412);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(50, 40);
             this.numericUpDown1.TabIndex = 12;
@@ -147,7 +147,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Lucida Sans Unicode", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label2.Location = new System.Drawing.Point(341, 175);
+            this.label2.Location = new System.Drawing.Point(88, 177);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(177, 28);
             this.label2.TabIndex = 13;
@@ -159,7 +159,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Lucida Sans Unicode", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label3.Location = new System.Drawing.Point(739, 177);
+            this.label3.Location = new System.Drawing.Point(486, 179);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(194, 28);
             this.label3.TabIndex = 14;
@@ -171,7 +171,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Lucida Sans Unicode", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label4.Location = new System.Drawing.Point(343, 423);
+            this.label4.Location = new System.Drawing.Point(90, 425);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(297, 25);
             this.label4.TabIndex = 16;
@@ -183,7 +183,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Lucida Sans Unicode", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label5.Location = new System.Drawing.Point(343, 362);
+            this.label5.Location = new System.Drawing.Point(90, 364);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(303, 25);
             this.label5.TabIndex = 17;
@@ -195,7 +195,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Lucida Sans Unicode", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label6.Location = new System.Drawing.Point(343, 299);
+            this.label6.Location = new System.Drawing.Point(90, 301);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(301, 25);
             this.label6.TabIndex = 18;
@@ -205,7 +205,7 @@
             // 
             this.numericUpDown2.Font = new System.Drawing.Font("Lucida Sans Unicode", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numericUpDown2.ForeColor = System.Drawing.Color.Black;
-            this.numericUpDown2.Location = new System.Drawing.Point(744, 347);
+            this.numericUpDown2.Location = new System.Drawing.Point(491, 349);
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(50, 40);
             this.numericUpDown2.TabIndex = 19;
@@ -214,7 +214,7 @@
             // 
             this.numericUpDown3.Font = new System.Drawing.Font("Lucida Sans Unicode", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numericUpDown3.ForeColor = System.Drawing.Color.Black;
-            this.numericUpDown3.Location = new System.Drawing.Point(744, 284);
+            this.numericUpDown3.Location = new System.Drawing.Point(491, 286);
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(50, 40);
             this.numericUpDown3.TabIndex = 20;
@@ -226,7 +226,7 @@
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button1.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.Control;
-            this.button1.Location = new System.Drawing.Point(744, 492);
+            this.button1.Location = new System.Drawing.Point(491, 494);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(231, 45);
             this.button1.TabIndex = 21;
@@ -338,7 +338,7 @@
             this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(348, 224);
+            this.dateTimePicker1.Location = new System.Drawing.Point(95, 226);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(170, 31);
             this.dateTimePicker1.TabIndex = 34;
@@ -348,7 +348,7 @@
             this.dateTimePicker2.CalendarFont = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker2.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(744, 224);
+            this.dateTimePicker2.Location = new System.Drawing.Point(491, 226);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(170, 31);
             this.dateTimePicker2.TabIndex = 35;
@@ -360,17 +360,18 @@
             this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button5.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.SystemColors.Control;
-            this.button5.Location = new System.Drawing.Point(1538, 492);
+            this.button5.Location = new System.Drawing.Point(1617, 496);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(159, 45);
             this.button5.TabIndex = 37;
             this.button5.Text = "Finish Booking";
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // employeeListView
             // 
             this.employeeListView.HideSelection = false;
-            this.employeeListView.Location = new System.Drawing.Point(1285, 175);
+            this.employeeListView.Location = new System.Drawing.Point(1364, 179);
             this.employeeListView.Name = "employeeListView";
             this.employeeListView.Size = new System.Drawing.Size(412, 275);
             this.employeeListView.TabIndex = 38;
@@ -380,8 +381,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1724, 1012);
+            this.ClientSize = new System.Drawing.Size(1847, 1012);
             this.Controls.Add(this.employeeListView);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.dateTimePicker2);

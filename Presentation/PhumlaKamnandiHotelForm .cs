@@ -41,8 +41,7 @@ namespace BookingSystem.Presentation
 
         private void bookingsButton_Click(object sender, EventArgs e)
         {
-            BookingsForm bookingForm = new BookingsForm();
-            bookingForm.Show();
+
         }
     }
 }

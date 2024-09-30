@@ -85,9 +85,9 @@
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.label4.Location = new System.Drawing.Point(97, 280);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(37, 28);
+            this.label4.Size = new System.Drawing.Size(74, 28);
             this.label4.TabIndex = 17;
-            this.label4.Text = "ID";
+            this.label4.Text = "Email";
             // 
             // label5
             // 
@@ -146,7 +146,7 @@
             // employeeListView
             // 
             this.employeeListView.HideSelection = false;
-            this.employeeListView.Location = new System.Drawing.Point(459, 60);
+            this.employeeListView.Location = new System.Drawing.Point(502, 114);
             this.employeeListView.Name = "employeeListView";
             this.employeeListView.Size = new System.Drawing.Size(808, 204);
             this.employeeListView.TabIndex = 24;
