@@ -7,7 +7,7 @@ namespace BookingSystem.Business
         #region Data members;
         private int roomID;
         private bool availability;
-        private double dailyRate; // The cost of the room
+        private decimal dailyRate; // The cost of the room
         private RoomType roomType;
         #endregion
 
@@ -42,7 +42,7 @@ namespace BookingSystem.Business
             get { return roomType; }
         }
 
-        public double DailyRate {get {return dailyRate;} set { dailyRate = value; } }
+        public decimal DailyRate {get {return dailyRate;} set { dailyRate = value; } }
         #endregion
 
         #region Other Methods
@@ -51,15 +51,31 @@ namespace BookingSystem.Business
             switch (roomType)
             {
                 case (RoomType.Standard):
-                    return "with double bed, shared bathroom and access to fully equipped communal kitchen.";
+                    return "Standard Room with double bed, shared bathroom and access to fully equipped communal kitchen.";
                 case (RoomType.Studio):
-                    return "with double or single twin bed, en-suite bathroom and access to fully equipped communal kitchen.";
+                    return "Studio with double or single twin bed, en-suite bathroom and access to fully equipped communal kitchen.";
                 case (RoomType.Executive):
-                    return "with king-size bed (single twin optional) with en-suite bathroom and kitchenette.";
+                    return "Executive Room with king-size bed (single twin optional) with en-suite bathroom and kitchenette.";
                 case (RoomType.OneBedroomApartment):
-                    return "with double bed, living room, en-suite bathroom and a fully equipped kitchen.";
+                    return "One-Bedroom Apartment with double bed, living room, en-suite bathroom and a fully equipped kitchen.";
                 default:
                     return "unknown room type.";
+            }
+        }
+        public decimal getDeposit()
+        {
+            switch (roomType)
+            {
+                case (RoomType.Standard):
+                    return dailyRate * (decimal)0.1;
+                case (RoomType.Studio):
+                    return dailyRate * (decimal)0.1;
+                case (RoomType.Executive):
+                    return dailyRate * (decimal)0.1;
+                case (RoomType.OneBedroomApartment):
+                    return dailyRate * (decimal)0.1;
+                default:
+                    return 0;
             }
         }
 

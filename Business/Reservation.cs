@@ -12,7 +12,7 @@ namespace BookingSystem.Business
 		private DateTime checkIn;
         private DateTime checkOut;
 
-		private double costOfStay; // To be derived based and room type and stay duration 
+		private decimal costOfStay; // To be derived based and room type and stay duration 
         #endregion
 
         #region Property Methods
@@ -23,11 +23,11 @@ namespace BookingSystem.Business
         public DateTime CheckIn { get { return checkIn; } set { checkIn = value; } }
         public DateTime CheckOut { get { return checkOut; } set { checkOut = value; } }
 
-        public double CostOfStay { get { return costOfStay; } set { costOfStay = value; } }
+        public decimal CostOfStay { get { return costOfStay; } set { costOfStay = value; } }
         #endregion 
 
         #region Constructors
-        public Reservation(Guest guest, Collection<Room> rooms, DateTime checkIn, DateTime checkOut, double costOfStay)
+        public Reservation(Guest guest, Collection<Room> rooms, DateTime checkIn, DateTime checkOut, decimal costOfStay)
 		{
             this.guest = guest;
             this.rooms = rooms;
