@@ -5,17 +5,26 @@ namespace BookingSystem.Business
     public class Room
     {
         #region Data members;
-        private int roomID;
-        private bool availability;
+        private int roomID; // PK
+        private int hotelID; // FK1
+        private int? reservationID; // FK2 (it is NULLABLE)
+
+        private bool availability; // To be derived from the NULLness of the reservationID
+
         private decimal dailyRate; // The cost of the room
         private RoomType roomType;
         #endregion
 
         #region Constructor
-        public Room(int roomID, RoomType roomType)
+        public Room(int roomID, int hotelID, int? reservationID, decimal dailyRate, RoomType roomType)
         {
             this.roomID = roomID;
             this.roomType = roomType;
+            this.reservationID = reservationID;
+            this.dailyRate = dailyRate;
+            this.roomType = roomType;
+
+            if (reservationID != null ) availability = false;
 
             // Derive dailyRate based on the roomType
             switch (roomType)
@@ -33,6 +42,8 @@ namespace BookingSystem.Business
                     dailyRate = 1720;
                     break;
             }
+
+
         }
         #endregion
 
@@ -43,6 +54,7 @@ namespace BookingSystem.Business
         }
 
         public decimal DailyRate {get {return dailyRate;} set { dailyRate = value; } }
+       
         #endregion
 
         #region Other Methods
