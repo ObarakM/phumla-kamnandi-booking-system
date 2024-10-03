@@ -7,7 +7,7 @@ namespace BookingSystem.Business
 	{
 
         #region Field Members
-        private int id;
+        private int guestID;
         private string name;
         private int phone;
         private string email;
@@ -23,9 +23,9 @@ namespace BookingSystem.Business
         #endregion
 
         #region Constructors
-        public Guest(int id, string name, int phone, string email)
+        public Guest(int guestID, string name, int phone, string email)
 		{
-            this.id = id;
+            this.guestID = guestID;
             this.name = name;
             this.phone = phone;
             this.email = email;
