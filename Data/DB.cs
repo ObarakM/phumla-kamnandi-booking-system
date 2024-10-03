@@ -58,7 +58,7 @@ namespace BookingSystem.Data
                         Convert.ToInt32(dataReader["hotelID"]),
                         Convert.ToInt32(dataReader["reservationID"]),
                         Convert.ToDecimal(dataReader["dailyRate"]),
-                        (RoomType)Convert.ToInt32(dataReader["RoomType"])
+                        (RoomType)Convert.ToInt32(dataReader["roomType"])
                     );
 
                     rooms.Add(room);
