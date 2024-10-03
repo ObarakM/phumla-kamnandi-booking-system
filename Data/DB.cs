@@ -103,6 +103,49 @@ namespace BookingSystem.Data
             return freeRoomsCount; // Return the number of free rooms of the given type
         }
 
+        // Method to search for a guest in the DB
+        public Guest findGuest(int guestID)
+        {
+            Guest guest = null;
+
+            try
+            {
+                // Define the query to search for the guest by guestID
+                string query = "SELECT * FROM Guests WHERE guestID = @GuestID";
+
+                // Initialize the command object with the query and connection
+                command = new SqlCommand(query, connection);
+
+                // Add parameter to avoid SQL injection
+                command.Parameters.AddWithValue("@GuestID", guestID);
+
+                // Execute the query and store the result in a data reader
+                dataReader = command.ExecuteReader();
+
+                // Check if any record is found
+                if (dataReader.Read())
+                {
+                    // Create a new Guest object and populate it with data from the database
+                    guest = new Guest
+                    (
+                        Convert.ToInt32(dataReader["guestID"]),
+                        dataReader["name"].ToString(),
+                        Convert.ToInt32(dataReader["phone"]),
+                        dataReader["email"].ToString()
+                    );
+                }
+
+                // Close the reader after reading
+                dataReader.Close();
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions (you could log it or throw the exception up to the caller)
+                Console.WriteLine("An error occurred while searching for the guest: " + ex.Message);
+            }
+
+            return guest; // Return the found guest or null if not found
+        }
 
 
         // Define a method to fetch all guests in the DB
