@@ -76,6 +76,34 @@ namespace BookingSystem.Data
             return rooms;
         }
 
+        public int getFreeRoomsCount(RoomType roomType)
+        {
+            int freeRoomsCount = 0;
+
+            try
+            {
+                // Define the query to count rooms of the specific type that have null in ReservationID
+                string query = "SELECT COUNT(*) FROM Rooms WHERE RoomType = @RoomType AND ReservationID IS NULL";
+
+                // Initialize the command object with the query and connection
+                command = new SqlCommand(query, connection);
+
+                // Add parameter to avoid SQL injection (RoomType is an enum, cast it to int)
+                command.Parameters.AddWithValue("@RoomType", (int)roomType);
+
+                // Execute the query and get the count result
+                freeRoomsCount = (int)command.ExecuteScalar(); // ExecuteScalar returns a single value (the count)
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions
+                Console.WriteLine("An error occurred while counting free rooms: " + ex.Message);
+            }
+
+            return freeRoomsCount; // Return the number of free rooms of the given type
+        }
+
+
 
         // Define a method to fetch all guests in the DB
 
