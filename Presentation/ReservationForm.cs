@@ -33,10 +33,10 @@ namespace BookingSystem.Presentation
         {
 
             InitializeComponent();
-            standard = new Room(1,1,1,800, Room.RoomType.Standard);
-            studio = new Room(2,1,1,1200, Room.RoomType.Studio);
-            executive = new Room(3,1,1,1450, Room.RoomType.Executive);
-            apartment = new Room(4,1,1,1720, Room.RoomType.OneBedroomApartment);
+            standard = new Room(1,1,1, Room.RoomType.Standard);
+            studio = new Room(2,1,1, Room.RoomType.Studio);
+            executive = new Room(3,1,1, Room.RoomType.Executive);
+            apartment = new Room(4,1,1, Room.RoomType.OneBedroomApartment);
             rooms = new Collection<Room>();
 
         }
