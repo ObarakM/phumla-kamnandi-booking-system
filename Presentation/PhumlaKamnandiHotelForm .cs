@@ -12,6 +12,8 @@ namespace BookingSystem.Presentation
 {
     public partial class PhumlaKamnandiHotelForm  : Form
     {
+        public static PhumlaKamnandiHotelForm phumlaKamnandi;
+        public static BookingsForm bookingsForm;
         public PhumlaKamnandiHotelForm()
         {
             InitializeComponent();
@@ -31,20 +33,22 @@ namespace BookingSystem.Presentation
         private void Form1_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
+            phumlaKamnandi = new PhumlaKamnandiHotelForm();
+            bookingsForm = new BookingsForm();
         }
 
         private void reservationButton_Click(object sender, EventArgs e)
         {
             ReservationForm reservationForm = new ReservationForm();
             reservationForm.Show();
-            //this.Hide();
+            this.Hide();
         }
 
         private void bookingsButton_Click(object sender, EventArgs e)
         {
             BookingListing bookingListing = new BookingListing();
             bookingListing.Show();
-            //this.Hide();
+            this.Hide();
         }
     }
 }
