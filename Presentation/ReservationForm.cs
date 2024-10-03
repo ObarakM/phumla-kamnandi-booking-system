@@ -9,20 +9,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace BookingSystem.Presentation
 {
     public partial class ReservationForm : Form
     {
+        #region data members
         private Hotel hotel;
         private Collection<Room> rooms;
-        Room standard;
-        Room studio;
-        Room executive;
-        Room apartment;
-        int adults;
-        int olderChildren;
-        int children;
+        private Room standard;
+        private Room studio;
+        private Room executive;
+        private Room apartment;
+        private int adults;
+        private int olderChildren;
+        private int children;
+        private decimal costOfStay;
+        #endregion
 
         public ReservationForm()
         {
@@ -52,13 +56,57 @@ namespace BookingSystem.Presentation
             select2.Visible = value;
             select3.Visible = value;
             select4.Visible = value;
+            finishBookingButton.Visible = value;
+            reservationListView.Visible = value;
         }
+
+        public void calculateCostOfStay()
+        {
+            foreach (Room room in rooms)
+            {
+                costOfStay += room.DailyRate;
+            }
+        }
+        #region accessor methods
+        public Collection<Room> getRooms()
+        {
+            return rooms;
+        }
+        public decimal getCostOfStay()
+        {
+            return costOfStay;
+        }
+        public DateTime getCheckIn()
+        {
+            return dateTimePicker1.Value;
+        }
+
+        public DateTime getCheckOut()
+        {
+            return dateTimePicker2.Value;
+        }
+        #endregion
+
+
 
         private void Form2_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
+
             showRooms(false);
+
+
+            finishBookingButton.Visible = false;
+            reservationListView.Visible = false;
+            reservationListView.View = View.Details; // set list view to view details
+
+            // add column headers
+            reservationListView.Columns.Add("Room type", 200);  // Header "Room Type", width 100
+            reservationListView.Columns.Add("Price", 100);         // Header "Price", width 100
+            reservationListView.Columns.Add("Deposit", 100);       // Header "Deposit", width 100
         }
+
+
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
@@ -79,24 +127,56 @@ namespace BookingSystem.Presentation
         private void button6_Click(object sender, EventArgs e)
         {
             rooms.Add(standard);
+            // add items to the list view
+            ListViewItem item = new ListViewItem(standard.getRoomType.ToString());
+            item.SubItems.Add(standard.DailyRate.ToString());
+            item.SubItems.Add(standard.getDeposit().ToString());
+            reservationListView.Items.Add(item);
+            //set the list view and finish booking button visibility to true
+            finishBookingButton.Visible=true;
+            reservationListView.Visible=true;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             
             rooms.Add(studio);
+            // add items to the list view
+            ListViewItem item = new ListViewItem(studio.getRoomType.ToString());
+            item.SubItems.Add(studio.DailyRate.ToString());
+            item.SubItems.Add(studio.getDeposit().ToString());
+            reservationListView.Items.Add(item);
+            //set the list view and finish booking button visibility to true
+            finishBookingButton.Visible = true;
+            reservationListView.Visible = true;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
            
             rooms.Add(executive);
+            // add items to the list view
+            ListViewItem item = new ListViewItem(executive.getRoomType.ToString());
+            item.SubItems.Add(executive.DailyRate.ToString());
+            item.SubItems.Add(executive.getDeposit().ToString());
+            reservationListView.Items.Add(item);
+            //set the list view and finish booking button visibility to true
+            finishBookingButton.Visible = true;
+            reservationListView.Visible = true;
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             
             rooms.Add(apartment);
+            // add items to the list view
+            ListViewItem item = new ListViewItem(apartment.getRoomType.ToString());
+            item.SubItems.Add(apartment.DailyRate.ToString());
+            item.SubItems.Add(apartment.getDeposit().ToString());
+            reservationListView.Items.Add(item);
+            //set the list view and finish booking button visibility to true
+            finishBookingButton.Visible = true;
+            reservationListView.Visible = true;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -136,6 +216,21 @@ namespace BookingSystem.Presentation
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
             olderChildren = (int)numericUpDown2.Value;
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
