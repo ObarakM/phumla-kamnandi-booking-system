@@ -34,5 +34,12 @@ namespace BookingSystem.Presentation
             guest = new Guest(int.Parse(idTextBox.Text),nameTextBox.Text,int.Parse(phoneTextBox.Text),emailTextBox.Text);
             reservation = new Reservation(guest, reservationForm.getRooms(),reservationForm.getCheckIn(),reservationForm.getCheckOut(), reservationForm.getCostOfStay());
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ReservationForm reservationForm = new ReservationForm();
+            reservationForm.Show();
+            this.Close();
+        }
     }
 }

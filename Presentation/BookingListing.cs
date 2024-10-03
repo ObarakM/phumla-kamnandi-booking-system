@@ -39,7 +39,9 @@ namespace BookingSystem.Presentation
 
         private void button3_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            PhumlaKamnandiHotelForm kamnandiHotelForm = new PhumlaKamnandiHotelForm();
+            kamnandiHotelForm.Show();
+            this.Close();
         }
     }
 }

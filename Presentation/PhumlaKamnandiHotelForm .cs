@@ -37,12 +37,14 @@ namespace BookingSystem.Presentation
         {
             ReservationForm reservationForm = new ReservationForm();
             reservationForm.Show();
+            //this.Hide();
         }
 
         private void bookingsButton_Click(object sender, EventArgs e)
         {
             BookingListing bookingListing = new BookingListing();
             bookingListing.Show();
+            //this.Hide();
         }
     }
 }

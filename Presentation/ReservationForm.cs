@@ -220,7 +220,9 @@ namespace BookingSystem.Presentation
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            PhumlaKamnandiHotelForm kamnandiHotelForm = new PhumlaKamnandiHotelForm();
+            kamnandiHotelForm.Show();
+            this.Close();
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
