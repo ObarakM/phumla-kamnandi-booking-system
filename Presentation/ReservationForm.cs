@@ -31,11 +31,12 @@ namespace BookingSystem.Presentation
 
         public ReservationForm()
         {
+
             InitializeComponent();
-            standard = new Room(1, Room.RoomType.Standard);
-            studio = new Room(2, Room.RoomType.Studio);
-            executive = new Room(3, Room.RoomType.Executive);
-            apartment = new Room(4, Room.RoomType.OneBedroomApartment);
+            standard = new Room(1,1,1,800, Room.RoomType.Standard);
+            studio = new Room(2,1,1,1200, Room.RoomType.Studio);
+            executive = new Room(3,1,1,1450, Room.RoomType.Executive);
+            apartment = new Room(4,1,1,1720, Room.RoomType.OneBedroomApartment);
             rooms = new Collection<Room>();
 
         }
@@ -102,9 +103,9 @@ namespace BookingSystem.Presentation
             reservationListView.View = View.Details; // set list view to view details
 
             // add column headers
-            reservationListView.Columns.Add("Room type", 200);  // Header "Room Type", width 100
-            reservationListView.Columns.Add("Price", 100);         // Header "Price", width 100
-            reservationListView.Columns.Add("Deposit", 100);       // Header "Deposit", width 100
+            reservationListView.Columns.Add("Room type", 150);  // Header "Room Type", width 100
+            reservationListView.Columns.Add("Max Occupancy", 150);         // Header "Price", width 100
+            reservationListView.Columns.Add("Rate", 100);       // Header "Deposit", width 100
         }
 
 
@@ -131,8 +132,8 @@ namespace BookingSystem.Presentation
             rooms.Add(standard);
             // add items to the list view
             ListViewItem item = new ListViewItem(standard.getRoomType.ToString());
+            item.SubItems.Add(4.ToString());
             item.SubItems.Add(standard.DailyRate.ToString());
-            item.SubItems.Add(standard.getDeposit().ToString());
             reservationListView.Items.Add(item);
             //set the list view and finish booking button visibility to true
             finishBookingButton.Visible=true;
@@ -145,8 +146,8 @@ namespace BookingSystem.Presentation
             rooms.Add(studio);
             // add items to the list view
             ListViewItem item = new ListViewItem(studio.getRoomType.ToString());
+            item.SubItems.Add(2.ToString());
             item.SubItems.Add(studio.DailyRate.ToString());
-            item.SubItems.Add(studio.getDeposit().ToString());
             reservationListView.Items.Add(item);
             //set the list view and finish booking button visibility to true
             finishBookingButton.Visible = true;
@@ -159,8 +160,8 @@ namespace BookingSystem.Presentation
             rooms.Add(executive);
             // add items to the list view
             ListViewItem item = new ListViewItem(executive.getRoomType.ToString());
+            item.SubItems.Add(2.ToString());
             item.SubItems.Add(executive.DailyRate.ToString());
-            item.SubItems.Add(executive.getDeposit().ToString());
             reservationListView.Items.Add(item);
             //set the list view and finish booking button visibility to true
             finishBookingButton.Visible = true;
@@ -173,8 +174,8 @@ namespace BookingSystem.Presentation
             rooms.Add(apartment);
             // add items to the list view
             ListViewItem item = new ListViewItem(apartment.getRoomType.ToString());
+            item.SubItems.Add(2.ToString());
             item.SubItems.Add(apartment.DailyRate.ToString());
-            item.SubItems.Add(apartment.getDeposit().ToString());
             reservationListView.Items.Add(item);
             //set the list view and finish booking button visibility to true
             finishBookingButton.Visible = true;

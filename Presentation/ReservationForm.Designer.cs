@@ -290,7 +290,7 @@
             // 
             this.select1.BackColor = System.Drawing.Color.Transparent;
             this.select1.BackgroundImage = global::BookingSystem.Properties.Resources.pexels_soulful_pizza_2080276_3914755__1_;
-            this.select1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            //this.select1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.select1.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.select1.ForeColor = System.Drawing.SystemColors.Control;
             this.select1.Location = new System.Drawing.Point(233, 892);
@@ -305,7 +305,7 @@
             // 
             this.select2.BackColor = System.Drawing.Color.Transparent;
             this.select2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("select2.BackgroundImage")));
-            this.select2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            //this.select2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.select2.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.select2.ForeColor = System.Drawing.SystemColors.Control;
             this.select2.Location = new System.Drawing.Point(554, 892);
@@ -320,7 +320,7 @@
             // 
             this.select3.BackColor = System.Drawing.Color.Transparent;
             this.select3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("select3.BackgroundImage")));
-            this.select3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            //this.select3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.select3.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.select3.ForeColor = System.Drawing.SystemColors.Control;
             this.select3.Location = new System.Drawing.Point(882, 892);

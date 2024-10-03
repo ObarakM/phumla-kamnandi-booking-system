@@ -56,7 +56,7 @@
             this.bookingsButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.bookingsButton.BackColor = System.Drawing.Color.Transparent;
             this.bookingsButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bookingsButton.BackgroundImage")));
-            //this.bookingsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bookingsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bookingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bookingsButton.Font = new System.Drawing.Font("Lucida Calligraphy", 32.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bookingsButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -73,7 +73,7 @@
             this.reportButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.reportButton.BackColor = System.Drawing.Color.Transparent;
             this.reportButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("reportButton.BackgroundImage")));
-            //this.reportButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.reportButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.reportButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.reportButton.Font = new System.Drawing.Font("Lucida Calligraphy", 32.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reportButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
