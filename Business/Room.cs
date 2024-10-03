@@ -26,22 +26,22 @@ namespace BookingSystem.Business
 
             if (reservationID != null ) availability = false;
 
-            // Derive dailyRate based on the roomType
-            switch (roomType)
-            {
-                case (RoomType.Standard):
-                    dailyRate = 800;
-                    break;
-                case (RoomType.Studio):
-                    dailyRate = 1200;
-                    break;
-                case (RoomType.Executive):
-                    dailyRate = 1450;
-                    break;
-                case (RoomType.OneBedroomApartment):
-                    dailyRate = 1720;
-                    break;
-            }
+            //// Derive dailyRate based on the roomType
+            //switch (roomType)
+            //{
+            //    case (RoomType.Standard):
+            //        dailyRate = 800;
+            //        break;
+            //    case (RoomType.Studio):
+            //        dailyRate = 1200;
+            //        break;
+            //    case (RoomType.Executive):
+            //        dailyRate = 1450;
+            //        break;
+            //    case (RoomType.OneBedroomApartment):
+            //        dailyRate = 1720;
+            //        break;
+            //}
 
 
         }
