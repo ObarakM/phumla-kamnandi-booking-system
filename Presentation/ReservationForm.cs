@@ -16,6 +16,7 @@ namespace BookingSystem.Presentation
     public partial class ReservationForm : Form
     {
         #region data members
+        public static ReservationForm reservationForm;
         private Hotel hotel;
         private Collection<Room> rooms;
         private Room standard;
@@ -92,7 +93,7 @@ namespace BookingSystem.Presentation
         private void Form2_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-
+            reservationForm = new ReservationForm();    
             showRooms(false);
 
 
@@ -120,8 +121,9 @@ namespace BookingSystem.Presentation
 
         private void button5_Click(object sender, EventArgs e)
         {
-            BookingsForm bookingForm = new BookingsForm();
-            bookingForm.Show();
+            PhumlaKamnandiHotelForm.bookingsForm.Show();
+            //bookingForm.Show();
+            this.Hide();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -220,8 +222,9 @@ namespace BookingSystem.Presentation
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            PhumlaKamnandiHotelForm kamnandiHotelForm = new PhumlaKamnandiHotelForm();
-            kamnandiHotelForm.Show();
+            //PhumlaKamnandiHotelForm kamnandiHotelForm = new PhumlaKamnandiHotelForm();
+            PhumlaKamnandiHotelForm.phumlaKamnandi.Show();
+            //kamnandiHotelForm.Show();
             this.Close();
         }
 

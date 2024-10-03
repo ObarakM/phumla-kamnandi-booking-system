@@ -17,6 +17,7 @@ namespace BookingSystem.Presentation
         private ReservationForm reservationForm;
         private Guest guest;
         private Reservation reservation;
+        public static BookingsForm bookingform;
         public BookingsForm()
         {
             InitializeComponent();
@@ -26,6 +27,7 @@ namespace BookingSystem.Presentation
         {
             this.WindowState = FormWindowState.Maximized;
             reservationForm = new ReservationForm();
+            bookingform = new BookingsForm();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -37,8 +39,7 @@ namespace BookingSystem.Presentation
 
         private void button3_Click(object sender, EventArgs e)
         {
-            ReservationForm reservationForm = new ReservationForm();
-            reservationForm.Show();
+            ReservationForm.reservationForm.Show();
             this.Close();
         }
     }
