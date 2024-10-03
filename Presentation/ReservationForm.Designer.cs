@@ -44,18 +44,20 @@
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.roomDescription1 = new System.Windows.Forms.TextBox();
+            this.roomDescription2 = new System.Windows.Forms.TextBox();
+            this.roomDescription3 = new System.Windows.Forms.TextBox();
+            this.roomDescription4 = new System.Windows.Forms.TextBox();
+            this.select1 = new System.Windows.Forms.Button();
+            this.select2 = new System.Windows.Forms.Button();
+            this.select3 = new System.Windows.Forms.Button();
+            this.select4 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.button5 = new System.Windows.Forms.Button();
-            this.employeeListView = new System.Windows.Forms.ListView();
+            this.finishBookingButton = new System.Windows.Forms.Button();
+            this.reservationListView = new System.Windows.Forms.ListView();
+            this.button3 = new System.Windows.Forms.Button();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -74,7 +76,7 @@
             this.header.Font = new System.Drawing.Font("Lucida Calligraphy", 56.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.header.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.header.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.header.Location = new System.Drawing.Point(181, 9);
+            this.header.Location = new System.Drawing.Point(335, 9);
             this.header.Name = "header";
             this.header.Size = new System.Drawing.Size(1356, 97);
             this.header.TabIndex = 1;
@@ -126,7 +128,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Lucida Sans Unicode", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label1.Location = new System.Drawing.Point(343, 362);
+            this.label1.Location = new System.Drawing.Point(90, 364);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 25);
             this.label1.TabIndex = 6;
@@ -135,7 +137,7 @@
             // 
             this.numericUpDown1.Font = new System.Drawing.Font("Lucida Sans Unicode", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numericUpDown1.ForeColor = System.Drawing.Color.Black;
-            this.numericUpDown1.Location = new System.Drawing.Point(744, 410);
+            this.numericUpDown1.Location = new System.Drawing.Point(491, 412);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(50, 40);
             this.numericUpDown1.TabIndex = 12;
@@ -147,7 +149,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Lucida Sans Unicode", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label2.Location = new System.Drawing.Point(341, 175);
+            this.label2.Location = new System.Drawing.Point(88, 177);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(177, 28);
             this.label2.TabIndex = 13;
@@ -159,7 +161,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Lucida Sans Unicode", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label3.Location = new System.Drawing.Point(739, 177);
+            this.label3.Location = new System.Drawing.Point(486, 179);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(194, 28);
             this.label3.TabIndex = 14;
@@ -171,7 +173,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Lucida Sans Unicode", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label4.Location = new System.Drawing.Point(343, 423);
+            this.label4.Location = new System.Drawing.Point(90, 425);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(297, 25);
             this.label4.TabIndex = 16;
@@ -183,7 +185,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Lucida Sans Unicode", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label5.Location = new System.Drawing.Point(343, 362);
+            this.label5.Location = new System.Drawing.Point(90, 364);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(303, 25);
             this.label5.TabIndex = 17;
@@ -195,7 +197,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Lucida Sans Unicode", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.label6.Location = new System.Drawing.Point(343, 299);
+            this.label6.Location = new System.Drawing.Point(90, 301);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(301, 25);
             this.label6.TabIndex = 18;
@@ -205,195 +207,223 @@
             // 
             this.numericUpDown2.Font = new System.Drawing.Font("Lucida Sans Unicode", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numericUpDown2.ForeColor = System.Drawing.Color.Black;
-            this.numericUpDown2.Location = new System.Drawing.Point(744, 347);
+            this.numericUpDown2.Location = new System.Drawing.Point(491, 349);
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(50, 40);
             this.numericUpDown2.TabIndex = 19;
+            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
             // 
             // numericUpDown3
             // 
             this.numericUpDown3.Font = new System.Drawing.Font("Lucida Sans Unicode", 15.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numericUpDown3.ForeColor = System.Drawing.Color.Black;
-            this.numericUpDown3.Location = new System.Drawing.Point(744, 284);
+            this.numericUpDown3.Location = new System.Drawing.Point(491, 286);
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(50, 40);
             this.numericUpDown3.TabIndex = 20;
+            this.numericUpDown3.ValueChanged += new System.EventHandler(this.numericUpDown3_ValueChanged);
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImage = global::BookingSystem.Properties.Resources.pexels_soulful_pizza_2080276_3914755;
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button1.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.Control;
-            this.button1.Location = new System.Drawing.Point(744, 492);
+            this.button1.Location = new System.Drawing.Point(491, 494);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(231, 45);
             this.button1.TabIndex = 21;
             this.button1.Text = "Search for  available rooms";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox1
+            // roomDescription1
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.textBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBox1.Location = new System.Drawing.Point(95, 754);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(280, 167);
-            this.textBox1.TabIndex = 22;
-            this.textBox1.Text = resources.GetString("textBox1.Text");
+            this.roomDescription1.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.roomDescription1.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roomDescription1.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.roomDescription1.Location = new System.Drawing.Point(95, 754);
+            this.roomDescription1.Multiline = true;
+            this.roomDescription1.Name = "roomDescription1";
+            this.roomDescription1.Size = new System.Drawing.Size(280, 87);
+            this.roomDescription1.TabIndex = 22;
+            this.roomDescription1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // textBox2
+            // roomDescription2
             // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.textBox2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBox2.Location = new System.Drawing.Point(416, 754);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(280, 167);
-            this.textBox2.TabIndex = 23;
-            this.textBox2.Text = resources.GetString("textBox2.Text");
+            this.roomDescription2.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.roomDescription2.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roomDescription2.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.roomDescription2.Location = new System.Drawing.Point(416, 754);
+            this.roomDescription2.Multiline = true;
+            this.roomDescription2.Name = "roomDescription2";
+            this.roomDescription2.Size = new System.Drawing.Size(280, 87);
+            this.roomDescription2.TabIndex = 23;
+            this.roomDescription2.TextChanged += new System.EventHandler(this.roomDescription2_TextChanged);
             // 
-            // textBox3
+            // roomDescription3
             // 
-            this.textBox3.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.textBox3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBox3.Location = new System.Drawing.Point(744, 754);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(280, 167);
-            this.textBox3.TabIndex = 24;
-            this.textBox3.Text = resources.GetString("textBox3.Text");
+            this.roomDescription3.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.roomDescription3.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roomDescription3.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.roomDescription3.Location = new System.Drawing.Point(744, 754);
+            this.roomDescription3.Multiline = true;
+            this.roomDescription3.Name = "roomDescription3";
+            this.roomDescription3.Size = new System.Drawing.Size(280, 87);
+            this.roomDescription3.TabIndex = 24;
+            this.roomDescription3.TextChanged += new System.EventHandler(this.roomDescription3_TextChanged);
             // 
-            // textBox4
+            // roomDescription4
             // 
-            this.textBox4.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.textBox4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBox4.Location = new System.Drawing.Point(1061, 754);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(280, 167);
-            this.textBox4.TabIndex = 25;
-            this.textBox4.Text = resources.GetString("textBox4.Text");
+            this.roomDescription4.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.roomDescription4.Font = new System.Drawing.Font("Lucida Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roomDescription4.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.roomDescription4.Location = new System.Drawing.Point(1061, 754);
+            this.roomDescription4.Multiline = true;
+            this.roomDescription4.Name = "roomDescription4";
+            this.roomDescription4.Size = new System.Drawing.Size(280, 87);
+            this.roomDescription4.TabIndex = 25;
+            this.roomDescription4.TextChanged += new System.EventHandler(this.roomDescription4_TextChanged);
             // 
-            // button6
+            // select1
             // 
-            this.button6.BackColor = System.Drawing.Color.Transparent;
-            this.button6.BackgroundImage = global::BookingSystem.Properties.Resources.pexels_soulful_pizza_2080276_3914755;
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button6.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.ForeColor = System.Drawing.SystemColors.Control;
-            this.button6.Location = new System.Drawing.Point(233, 927);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(142, 45);
-            this.button6.TabIndex = 30;
-            this.button6.Text = "Select Room";
-            this.button6.UseVisualStyleBackColor = false;
+            this.select1.BackColor = System.Drawing.Color.Transparent;
+            this.select1.BackgroundImage = global::BookingSystem.Properties.Resources.pexels_soulful_pizza_2080276_3914755__1_;
+            this.select1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.select1.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.select1.ForeColor = System.Drawing.SystemColors.Control;
+            this.select1.Location = new System.Drawing.Point(233, 892);
+            this.select1.Name = "select1";
+            this.select1.Size = new System.Drawing.Size(142, 45);
+            this.select1.TabIndex = 30;
+            this.select1.Text = "Select Room";
+            this.select1.UseVisualStyleBackColor = false;
+            this.select1.Click += new System.EventHandler(this.button6_Click);
             // 
-            // button2
+            // select2
             // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.BackgroundImage = global::BookingSystem.Properties.Resources.pexels_soulful_pizza_2080276_3914755;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.Control;
-            this.button2.Location = new System.Drawing.Point(554, 927);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(142, 45);
-            this.button2.TabIndex = 31;
-            this.button2.Text = "Select Room";
-            this.button2.UseVisualStyleBackColor = false;
+            this.select2.BackColor = System.Drawing.Color.Transparent;
+            this.select2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("select2.BackgroundImage")));
+            this.select2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.select2.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.select2.ForeColor = System.Drawing.SystemColors.Control;
+            this.select2.Location = new System.Drawing.Point(554, 892);
+            this.select2.Name = "select2";
+            this.select2.Size = new System.Drawing.Size(142, 45);
+            this.select2.TabIndex = 31;
+            this.select2.Text = "Select Room";
+            this.select2.UseVisualStyleBackColor = false;
+            this.select2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // select3
             // 
-            this.button3.BackColor = System.Drawing.Color.Transparent;
-            this.button3.BackgroundImage = global::BookingSystem.Properties.Resources.pexels_soulful_pizza_2080276_3914755;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.SystemColors.Control;
-            this.button3.Location = new System.Drawing.Point(882, 927);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(142, 45);
-            this.button3.TabIndex = 32;
-            this.button3.Text = "Select Room";
-            this.button3.UseVisualStyleBackColor = false;
+            this.select3.BackColor = System.Drawing.Color.Transparent;
+            this.select3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("select3.BackgroundImage")));
+            this.select3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.select3.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.select3.ForeColor = System.Drawing.SystemColors.Control;
+            this.select3.Location = new System.Drawing.Point(882, 892);
+            this.select3.Name = "select3";
+            this.select3.Size = new System.Drawing.Size(142, 45);
+            this.select3.TabIndex = 32;
+            this.select3.Text = "Select Room";
+            this.select3.UseVisualStyleBackColor = false;
+            this.select3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
+            // select4
             // 
-            this.button4.BackColor = System.Drawing.Color.Transparent;
-            this.button4.BackgroundImage = global::BookingSystem.Properties.Resources.pexels_soulful_pizza_2080276_3914755;
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button4.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.SystemColors.Control;
-            this.button4.Location = new System.Drawing.Point(1199, 927);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(142, 45);
-            this.button4.TabIndex = 33;
-            this.button4.Text = "Select Room";
-            this.button4.UseVisualStyleBackColor = false;
+            this.select4.BackColor = System.Drawing.Color.Transparent;
+            this.select4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("select4.BackgroundImage")));
+            this.select4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.select4.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.select4.ForeColor = System.Drawing.SystemColors.Control;
+            this.select4.Location = new System.Drawing.Point(1199, 892);
+            this.select4.Name = "select4";
+            this.select4.Size = new System.Drawing.Size(142, 45);
+            this.select4.TabIndex = 33;
+            this.select4.Text = "Select Room";
+            this.select4.UseVisualStyleBackColor = false;
+            this.select4.Click += new System.EventHandler(this.button4_Click);
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(348, 224);
+            this.dateTimePicker1.Location = new System.Drawing.Point(95, 226);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(170, 31);
             this.dateTimePicker1.TabIndex = 34;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // dateTimePicker2
             // 
             this.dateTimePicker2.CalendarFont = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker2.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(744, 224);
+            this.dateTimePicker2.Location = new System.Drawing.Point(491, 226);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(170, 31);
             this.dateTimePicker2.TabIndex = 35;
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
-            // button5
+            // finishBookingButton
             // 
-            this.button5.BackColor = System.Drawing.Color.Transparent;
-            this.button5.BackgroundImage = global::BookingSystem.Properties.Resources.pexels_soulful_pizza_2080276_3914755;
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button5.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.SystemColors.Control;
-            this.button5.Location = new System.Drawing.Point(1538, 492);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(159, 45);
-            this.button5.TabIndex = 37;
-            this.button5.Text = "Finish Booking";
-            this.button5.UseVisualStyleBackColor = false;
+            this.finishBookingButton.BackColor = System.Drawing.Color.Transparent;
+            this.finishBookingButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("finishBookingButton.BackgroundImage")));
+            this.finishBookingButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.finishBookingButton.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.finishBookingButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.finishBookingButton.Location = new System.Drawing.Point(1617, 496);
+            this.finishBookingButton.Name = "finishBookingButton";
+            this.finishBookingButton.Size = new System.Drawing.Size(159, 45);
+            this.finishBookingButton.TabIndex = 37;
+            this.finishBookingButton.Text = "Finish Booking";
+            this.finishBookingButton.UseVisualStyleBackColor = false;
+            this.finishBookingButton.Click += new System.EventHandler(this.button5_Click);
             // 
-            // employeeListView
+            // reservationListView
             // 
-            this.employeeListView.HideSelection = false;
-            this.employeeListView.Location = new System.Drawing.Point(1285, 175);
-            this.employeeListView.Name = "employeeListView";
-            this.employeeListView.Size = new System.Drawing.Size(412, 275);
-            this.employeeListView.TabIndex = 38;
-            this.employeeListView.UseCompatibleStateImageBehavior = false;
+            this.reservationListView.HideSelection = false;
+            this.reservationListView.Location = new System.Drawing.Point(1364, 179);
+            this.reservationListView.Name = "reservationListView";
+            this.reservationListView.Size = new System.Drawing.Size(412, 275);
+            this.reservationListView.TabIndex = 38;
+            this.reservationListView.UseCompatibleStateImageBehavior = false;
+            // 
+            // button3
+            // 
+            this.button3.BackgroundImage = global::BookingSystem.Properties.Resources.castle_4931672;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.button3.Location = new System.Drawing.Point(95, 24);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(147, 82);
+            this.button3.TabIndex = 47;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // ReservationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::BookingSystem.Properties.Resources.pexels_soulful_pizza_2080276_3914755__1_1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1724, 1012);
-            this.Controls.Add(this.employeeListView);
-            this.Controls.Add(this.button5);
+            this.ClientSize = new System.Drawing.Size(1924, 1012);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.reservationListView);
+            this.Controls.Add(this.finishBookingButton);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.select4);
+            this.Controls.Add(this.select3);
+            this.Controls.Add(this.select2);
+            this.Controls.Add(this.select1);
+            this.Controls.Add(this.roomDescription4);
+            this.Controls.Add(this.roomDescription3);
+            this.Controls.Add(this.roomDescription2);
+            this.Controls.Add(this.roomDescription1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.numericUpDown3);
             this.Controls.Add(this.numericUpDown2);
@@ -441,17 +471,19 @@
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.NumericUpDown numericUpDown3;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox roomDescription1;
+        private System.Windows.Forms.TextBox roomDescription2;
+        private System.Windows.Forms.TextBox roomDescription3;
+        private System.Windows.Forms.TextBox roomDescription4;
+        private System.Windows.Forms.Button select1;
+        private System.Windows.Forms.Button select2;
+        private System.Windows.Forms.Button select3;
+        private System.Windows.Forms.Button select4;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.ListView employeeListView;
+        private System.Windows.Forms.Button finishBookingButton;
+        private System.Windows.Forms.ListView reservationListView;
+        private System.Windows.Forms.Button button3;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

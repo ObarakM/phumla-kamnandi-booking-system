@@ -50,6 +50,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -65,6 +66,12 @@
     <Compile Include="Business\Hotel.cs" />
     <Compile Include="Business\Reservation.cs" />
     <Compile Include="Business\Room.cs" />
+    <Compile Include="Presentation\BookingListing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\BookingListing.Designer.cs">
+      <DependentUpon>BookingListing.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\BookingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +92,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Presentation\BookingListing.resx">
+      <DependentUpon>BookingListing.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\BookingsForm.resx">
       <DependentUpon>BookingsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -126,6 +136,8 @@
       <DependentUpon>BookingDatabase.mdf</DependentUpon>
     </Content>
     <Content Include="Images\Apartment.jpg" />
+    <None Include="Resources\pexels-soulful-pizza-2080276-3914755 %281%291.jpg" />
+    <None Include="Resources\pexels-soulful-pizza-2080276-3914755 %281%29.jpg" />
     <None Include="Images\castle-4931672.jpg" />
     <None Include="Images\architecture-2590121.jpg" />
     <Content Include="Images\Deluxe.jpg" />
@@ -133,6 +145,7 @@
     <Content Include="Images\ExecutiveRoom.jpeg" />
     <Content Include="Images\FamilyRoom.jpeg" />
     <None Include="Images\pexels-soulful-pizza-2080276-3914755.jpg" />
+    <Content Include="Images\pexels-soulful-pizza-2080276-3914755 %281%29.jpg" />
     <Content Include="Images\pexels-zachtheshoota-1838640.jpg" />
     <Content Include="Images\Studio.jpeg" />
     <Content Include="Images\Suite.jpeg" />

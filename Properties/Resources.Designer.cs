@@ -133,6 +133,26 @@ namespace BookingSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap pexels_soulful_pizza_2080276_3914755__1_ {
+            get {
+                object obj = ResourceManager.GetObject("pexels-soulful-pizza-2080276-3914755 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pexels_soulful_pizza_2080276_3914755__1_1 {
+            get {
+                object obj = ResourceManager.GetObject("pexels-soulful-pizza-2080276-3914755 (1)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pexels_zachtheshoota_1838640 {
             get {
                 object obj = ResourceManager.GetObject("pexels-zachtheshoota-1838640", resourceCulture);
