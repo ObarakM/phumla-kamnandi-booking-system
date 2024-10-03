@@ -41,7 +41,7 @@ namespace BookingSystem.Data
             try
             {
                 // Define the query to fetch all rooms with reservationID being null (i.e., unreserved rooms)
-                string query = "SELECT * FROM Rooms WHERE ReservationID IS NULL";
+                string query = "SELECT * FROM Rooms";
 
                 // Initialize the command object with the query and connection
                 command = new SqlCommand(query, connection);
@@ -75,7 +75,6 @@ namespace BookingSystem.Data
 
             return rooms;
         }
-
 
 
         // Define a method to fetch all guests in the DB
