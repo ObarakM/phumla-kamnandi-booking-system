@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace BookingSystem.Data
 {
-    internal class DB
+    public class DB
     {
+
     }
 }

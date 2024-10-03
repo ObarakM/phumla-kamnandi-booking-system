@@ -62,6 +62,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookingDatabaseDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BookingDatabaseDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Business\Guest.cs" />
     <Compile Include="Business\Hotel.cs" />
     <Compile Include="Business\Reservation.cs" />
@@ -114,6 +119,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="BookingDatabaseDataSet.xsc">
+      <DependentUpon>BookingDatabaseDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="BookingDatabaseDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BookingDatabaseDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BookingDatabaseDataSet.xss">
+      <DependentUpon>BookingDatabaseDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
