@@ -107,7 +107,7 @@ namespace BookingSystem.Presentation
         {
             foreach (Room room in rooms)
             {
-                costOfStay += room.DailyRate;
+                costOfStay += (room.DailyRate*adults+(room.DailyRate/2)*children);
             }
         }
 
@@ -139,16 +139,17 @@ namespace BookingSystem.Presentation
         }
         public decimal getCostOfStay()
         {
+            calculateCostOfStay();
             return costOfStay;
         }
         public DateTime getCheckIn()
         {
-            return dateTimePicker1.Value;
+            return dateTimePicker1.Value.Date;
         }
 
         public DateTime getCheckOut()
         {
-            return dateTimePicker2.Value;
+            return dateTimePicker2.Value.Date;
         }
         #endregion
 

@@ -18,7 +18,7 @@ namespace BookingSystem
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Presentation.Form1());
-            Application.Run(new BookingsForm());
+            Application.Run(new PhumlaKamnandiHotelForm());
         }
     }
 }

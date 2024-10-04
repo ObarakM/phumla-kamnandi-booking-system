@@ -16,7 +16,7 @@ namespace BookingSystem.Presentation
     public partial class BookingsForm : Form
     {
         private ReservationForm reservationForm;
-        private Guest guest;
+        private Guest currentGuest;
         private Reservation reservation;
         public static BookingsForm bookingform;
 
@@ -65,7 +65,15 @@ namespace BookingSystem.Presentation
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            if (newGuestRadioButton1.Checked)
+            {
+                idTextBox.Text = db.addGuest(nameTextBox.Text,int.Parse(phoneTextBox.Text),emailTextBox.Text).ToString();
+            }
+            if (existingGuestRadioButton2.Checked)
+            {
+                reservation = new Reservation(0,currentGuest, reservationForm.getRooms(),reservationForm.getCheckIn(),reservationForm.getCheckOut(), reservationForm.getCostOfStay());
+
+            }
             //guest = new Guest(int.Parse(idTextBox.Text),nameTextBox.Text,int.Parse(phoneTextBox.Text),emailTextBox.Text);
             //reservation = new Reservation(guest, reservationForm.getRooms(),reservationForm.getCheckIn(),reservationForm.getCheckOut(), reservationForm.getCostOfStay());
         }
@@ -96,7 +104,7 @@ namespace BookingSystem.Presentation
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-            Guest currentGuest = db.findGuest(int.Parse(idTextBox.Text));
+            currentGuest = db.findGuest(int.Parse(idTextBox.Text));
             if (currentGuest != null) 
             {
                 showFormInfo(true);
