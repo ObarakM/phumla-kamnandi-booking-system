@@ -72,7 +72,8 @@ namespace BookingSystem.Presentation
             if (existingGuestRadioButton2.Checked)
             {
                 reservation = new Reservation(0,currentGuest, reservationForm.getRooms(),reservationForm.getCheckIn(),reservationForm.getCheckOut(), reservationForm.getCostOfStay());
-
+                int reference = db.makeReservation(reservation);
+                MessageBox.Show("Rervation complete and the reference number is: "+reference);
             }
             //guest = new Guest(int.Parse(idTextBox.Text),nameTextBox.Text,int.Parse(phoneTextBox.Text),emailTextBox.Text);
             //reservation = new Reservation(guest, reservationForm.getRooms(),reservationForm.getCheckIn(),reservationForm.getCheckOut(), reservationForm.getCostOfStay());
