@@ -245,13 +245,56 @@ namespace BookingSystem.Data
         // A method to generate a reservationID, make a reservation object, reserve the rooms given, and return the reservation
         public int makeReservation(Reservation reservation)
         {
-            // Generate reservationID by adding 1 to the MAX(reservationID) in the Reservations table is it is already there
+            int newReservationID = 0;
+            SqlTransaction transaction = null;
 
-            // For all the given rooms objects, use their roomIDs to update their reservationID to the newly generated one in the DB
-            
-            // return reservation
-            return 0;
+            try
+            {
+                // Start a transaction to ensure all changes happen together
+                transaction = connection.BeginTransaction();
+
+                // 1. Generate reservationID by finding the MAX(reservationID) in the Reservations table
+                string getMaxIDQuery = "SELECT ISNULL(MAX(reservationID), 0) FROM Reservations";
+                SqlCommand getMaxIDCommand = new SqlCommand(getMaxIDQuery, connection, transaction);
+                newReservationID = Convert.ToInt32(getMaxIDCommand.ExecuteScalar()) + 1;
+
+                // Set the reservationID of the provided reservation object
+                reservation.ReservationID = newReservationID;
+
+                // 2. Update each room's reservationID in the Rooms table
+                foreach (Room room in reservation.Rooms)
+                {
+                    string updateRoomQuery = "UPDATE Rooms SET reservationID = @reservationID WHERE roomID = @roomID";
+                    SqlCommand updateRoomCommand = new SqlCommand(updateRoomQuery, connection, transaction);
+                    updateRoomCommand.Parameters.AddWithValue("@reservationID", newReservationID);
+                    updateRoomCommand.Parameters.AddWithValue("@roomID", room.RoomID);
+                    updateRoomCommand.ExecuteNonQuery();
+                }
+
+                // 3. Insert the new reservation row into the Reservations table
+                string insertReservationQuery = @"INSERT INTO Reservations (reservationID, guestID, roomIDs, checkIn, checkOut, CostOfStay) VALUES (@reservationID, @guestID, @roomIDs, @checkIn, @checkOut, @CostOfStay)";
+                SqlCommand insertReservationCommand = new SqlCommand(insertReservationQuery, connection, transaction);
+                insertReservationCommand.Parameters.AddWithValue("@reservationID", newReservationID);
+                insertReservationCommand.Parameters.AddWithValue("@guestID", reservation.Guest.GuestID);
+                insertReservationCommand.Parameters.AddWithValue("@roomIDs", string.Join(",", reservation.Rooms.Select(r => r.RoomID)));
+                insertReservationCommand.Parameters.AddWithValue("@checkIn", reservation.CheckIn);
+                insertReservationCommand.Parameters.AddWithValue("@checkOut", reservation.CheckOut);
+                insertReservationCommand.Parameters.AddWithValue("@CostOfStay", reservation.CostOfStay);
+                insertReservationCommand.ExecuteNonQuery();
+
+                // Commit transaction if everything succeeded
+                transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                // Rollback transaction if any error occurred
+                transaction?.Rollback();
+                throw new Exception("An error occurred while making the reservation: " + ex.Message);
+            }
+
+            return newReservationID; // Return the new reservationID
         }
+
 
 
         // Define a method to fetch all guests in the DB
