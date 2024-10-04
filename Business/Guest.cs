@@ -16,10 +16,10 @@ namespace BookingSystem.Business
         #endregion
 
         #region Property Methods
-        public int Id { set; get; }
-        public string Name { set; get; }
-        public int Phone { set; get; }
-        public string Email { set; get; }
+        public int GuestID { set { guestID = value; } get { return guestID; } }
+        public string Name { set { name = value; } get { return name; } }
+        public int Phone { set { phone = value; } get { return phone; } }
+        public string Email { set { email = value; } get { return email; } }
         #endregion
 
         #region Constructors
