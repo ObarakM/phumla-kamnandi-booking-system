@@ -23,11 +23,14 @@ namespace BookingSystem.Presentation
             InitializeComponent();
         }
 
+   
+
         private void BookingsForm_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
             reservationForm = new ReservationForm();
             bookingform = new BookingsForm();
+
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -153,6 +153,7 @@
       <DependentUpon>BookingDatabase.mdf</DependentUpon>
     </Content>
     <Content Include="Images\Apartment.jpg" />
+    <None Include="Resources\pexels-lilartsy-1194775.jpg" />
     <None Include="Resources\pexels-soulful-pizza-2080276-3914755 %281%291.jpg" />
     <None Include="Resources\pexels-soulful-pizza-2080276-3914755 %281%29.jpg" />
     <None Include="Images\castle-4931672.jpg" />
@@ -162,6 +163,7 @@
     <Content Include="Images\ExecutiveRoom.jpeg" />
     <Content Include="Images\FamilyRoom.jpeg" />
     <None Include="Images\pexels-soulful-pizza-2080276-3914755.jpg" />
+    <Content Include="Images\pexels-lilartsy-1194775.jpg" />
     <Content Include="Images\pexels-soulful-pizza-2080276-3914755 %281%29.jpg" />
     <Content Include="Images\pexels-zachtheshoota-1838640.jpg" />
     <Content Include="Images\Studio.jpeg" />

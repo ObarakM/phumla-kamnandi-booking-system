@@ -1,4 +1,5 @@
 ﻿using BookingSystem.Business;
+using BookingSystem.Data;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,10 +24,11 @@ namespace BookingSystem.Presentation
         private Room studio;
         private Room executive;
         private Room apartment;
-        private int adults;
-        private int olderChildren;
-        private int children;
+        private int adults = 0;
+        private int olderChildren = 0;
+        private int children = 0;
         private decimal costOfStay;
+        private DB db = new DB();
         #endregion
 
         public ReservationForm()
@@ -41,26 +43,55 @@ namespace BookingSystem.Presentation
 
         }
 
+        private void SetRoomVisibility(Room.RoomType roomType, bool value)
+        {
+            switch (roomType)
+            {
+                case Room.RoomType.Standard:
+                    pictureBox1.Visible = value;
+                    roomDescription1.Visible = value;
+                    select1.Visible = value;
+                    break;
+                case Room.RoomType.Studio:
+                    pictureBox2.Visible = value;
+                    roomDescription2.Visible = value;
+                    select2.Visible = value;
+                    break;
+                case Room.RoomType.Executive:
+                    pictureBox3.Visible = value;
+                    roomDescription3.Visible = value;
+                    select3.Visible = value;
+                    break;
+                case Room.RoomType.OneBedroomApartment:
+                    pictureBox4.Visible = value;
+                    roomDescription4.Visible = value;
+                    select4.Visible = value;
+                    break;
+            }
+        }
+
+
         private void showRooms(bool value)
         {
-            if (!(adults>0) ) { // assuming children cannot be in the hotel without an adult
+            if (adults==0 ) { // assuming children cannot be in the hotel without an adult
                 value = false;
             }
-            pictureBox1.Visible = value;
-            pictureBox2.Visible = value;
-            pictureBox3.Visible = value;
-            pictureBox4.Visible = value;
-            roomDescription1.Visible = value;
-            roomDescription2.Visible = value;
-            roomDescription3.Visible = value;
-            roomDescription4.Visible = value;
-            select1.Visible = value;
-            select2.Visible = value;
-            select3.Visible = value;
-            select4.Visible = value;
+            for (int i = 0; i < 4; i++) // check if rooms are available
+            {
+                // Check if rooms are available AND if 'value' (based on adults) is true
+                if (db.getFreeRoomsCount((Room.RoomType)i) != 0 && value)
+                {
+                    SetRoomVisibility((Room.RoomType)i, true);
+                }
+                else
+                {
+                    SetRoomVisibility((Room.RoomType)i, false);
+                }
+            }
             finishBookingButton.Visible = value;
             reservationListView.Visible = value;
         }
+
 
         public void calculateCostOfStay()
         {
@@ -69,6 +100,26 @@ namespace BookingSystem.Presentation
                 costOfStay += room.DailyRate;
             }
         }
+
+        public bool sufficientRooms()
+        {
+            int spaceReserved = 0;
+            int spaceNeeded = adults + olderChildren + children;
+            foreach (Room room in rooms)
+            {
+                if (room.getRoomType == Room.RoomType.Standard)
+                {
+                    spaceReserved += 4;
+                }
+                else
+                {
+                    spaceReserved += 2;
+                }
+            }
+            return spaceReserved >= spaceNeeded;
+
+        }
+
         #region accessor methods
         public Collection<Room> getRooms()
         {
@@ -122,9 +173,16 @@ namespace BookingSystem.Presentation
 
         private void button5_Click(object sender, EventArgs e)
         {
-            PhumlaKamnandiHotelForm.bookingsForm.Show();
-            //bookingForm.Show();
-            this.Hide();
+            if (sufficientRooms())
+            {
+                PhumlaKamnandiHotelForm.bookingsForm.Show();
+                //bookingForm.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Please select more rooms to accomodate all guests!");
+            }
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -223,10 +281,15 @@ namespace BookingSystem.Presentation
 
         private void button3_Click_1(object sender, EventArgs e)
         {
+
+                PhumlaKamnandiHotelForm.phumlaKamnandi.Show();
+                this.Close();
+            
+
             //PhumlaKamnandiHotelForm kamnandiHotelForm = new PhumlaKamnandiHotelForm();
-            PhumlaKamnandiHotelForm.phumlaKamnandi.Show();
+            
             //kamnandiHotelForm.Show();
-            this.Close();
+            
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
