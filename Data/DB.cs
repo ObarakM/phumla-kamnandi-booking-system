@@ -243,12 +243,13 @@ namespace BookingSystem.Data
         }
 
         // A method to generate a reservationID, make a reservation object, reserve the rooms given, and return the reservation
-        public Reservation makeReservation(Collection<Room> rooms, decimal costOfStay)
+        public Reservation makeReservation(Reservation reservation)
         {
             // Generate reservationID by adding 1 to the MAX(reservationID) in the Reservations table is it is already there
 
             // For all the given rooms objects, use their roomIDs to update their reservationID to the newly generated one in the DB
-
+            
+            // return reservation
             return null;
         }
 
