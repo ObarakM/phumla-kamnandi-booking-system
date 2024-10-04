@@ -40,17 +40,17 @@ namespace BookingSystem.Presentation
         {
 
             InitializeComponent();
-            standard = new Room(1,1,1, Room.RoomType.Standard);
-            studio = new Room(2,1,1, Room.RoomType.Studio);
-            executive = new Room(3,1,1, Room.RoomType.Executive);
-            apartment = new Room(4,1,1, Room.RoomType.OneBedroomApartment);
             rooms = new Collection<Room>();
-
+            // available rooms from the database
             selectableStandard = db.getFreeRoomsCount(Room.RoomType.Standard);
             selectableExecutive = db.getFreeRoomsCount(Room.RoomType.Executive);
             selectableStudio = db.getFreeRoomsCount(Room.RoomType.Studio);
             selectableApartment = db.getFreeRoomsCount(Room.RoomType.OneBedroomApartment);
 
+            standard = new Room(1, 1, 1, Room.RoomType.Standard);
+            studio = new Room(2, 1, 1, Room.RoomType.Studio);
+            executive = new Room(3, 1, 1, Room.RoomType.Executive);
+            apartment = new Room(4, 1, 1, Room.RoomType.OneBedroomApartment);
         }
 
         private void SetRoomVisibility(Room.RoomType roomType, bool value)
@@ -158,7 +158,7 @@ namespace BookingSystem.Presentation
         private void Form2_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-            reservationForm = new ReservationForm();    
+            reservationForm = this;    
             showRooms(false);
 
 
@@ -186,6 +186,43 @@ namespace BookingSystem.Presentation
 
         private void button5_Click(object sender, EventArgs e)
         {
+            
+
+                int selectedStandard = db.getFreeRoomsCount(Room.RoomType.Standard)-selectableStandard;
+                Collection<Room> temp = db.getFreeRoomsByType(Room.RoomType.Standard);
+                for (int i = 0; i < selectedStandard; i++)
+                {
+                    rooms.Add(temp[0]);
+                    temp.RemoveAt(0);
+                }
+                
+                int selectedStudio = db.getFreeRoomsCount(Room.RoomType.Studio)-selectableStudio;
+                temp = db.getFreeRoomsByType(Room.RoomType.Studio);
+                for (int i = 0; i < selectedStudio; i++)
+                {
+                    rooms.Add(temp[0]);
+                    temp.RemoveAt(0);
+                }
+                                
+                int selectedExecutive = db.getFreeRoomsCount(Room.RoomType.Executive)-selectableExecutive;
+                temp = db.getFreeRoomsByType(Room.RoomType.Executive);
+                for (int i = 0; i < selectedExecutive; i++)
+                {
+                    rooms.Add(temp[0]);
+                    temp.RemoveAt(0);
+                }
+                                
+                int selectedApartment = db.getFreeRoomsCount(Room.RoomType.OneBedroomApartment)-selectableApartment;
+                temp = db.getFreeRoomsByType(Room.RoomType.OneBedroomApartment);
+                for (int i = 0; i < selectedApartment; i++)
+                {
+                    rooms.Add(temp[0]);
+                    temp.RemoveAt(0);
+                }
+                
+
+
+
             if (sufficientRooms())
             {
                 PhumlaKamnandiHotelForm.bookingsForm.Show();
@@ -200,7 +237,7 @@ namespace BookingSystem.Presentation
 
         private void button6_Click(object sender, EventArgs e)
         {
-            rooms.Add(standard);
+
             // add items to the list view
             ListViewItem item = new ListViewItem(standard.getRoomType.ToString());
             item.SubItems.Add(4.ToString());
@@ -222,7 +259,7 @@ namespace BookingSystem.Presentation
         private void button2_Click(object sender, EventArgs e)
         {
             
-            rooms.Add(studio);
+
             // add items to the list view
             ListViewItem item = new ListViewItem(studio.getRoomType.ToString());
             item.SubItems.Add(2.ToString());
@@ -244,7 +281,6 @@ namespace BookingSystem.Presentation
         private void button3_Click(object sender, EventArgs e)
         {
            
-            rooms.Add(executive);
             // add items to the list view
             ListViewItem item = new ListViewItem(executive.getRoomType.ToString());
             item.SubItems.Add(2.ToString());
@@ -265,7 +301,7 @@ namespace BookingSystem.Presentation
         private void button4_Click(object sender, EventArgs e)
         {
             
-            rooms.Add(apartment);
+
             // add items to the list view
             ListViewItem item = new ListViewItem(apartment.getRoomType.ToString());
             item.SubItems.Add(2.ToString());
@@ -294,6 +330,7 @@ namespace BookingSystem.Presentation
             roomDescription2.Text = studio.getDescription();
             roomDescription3.Text = executive.getDescription();
             roomDescription4.Text = apartment.getDescription();
+            //reservationListView.Clear();
             showRooms(true);
         }
 
@@ -341,6 +378,11 @@ namespace BookingSystem.Presentation
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void reservationListView_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
