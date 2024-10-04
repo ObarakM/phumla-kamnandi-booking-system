@@ -52,6 +52,10 @@ namespace BookingSystem.Business
             get { return roomType; }
         }
 
+        public int RoomID { get { return roomID; } set { roomID = value; } }
+
+        public int HotelID { get { return hotelID; } set { hotelID = value; } }
+
         public decimal DailyRate {get {return dailyRate;} set { dailyRate = value; } }
        
         #endregion
