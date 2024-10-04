@@ -262,25 +262,17 @@ namespace BookingSystem.Data
                 reservation.ReservationID = newReservationID;
 
                 // 2. Insert the new reservation row into the Reservations table
-                string insertReservationQuery = @"INSERT INTO Reservations (reservationID, guestID, roomIDs, checkIn, checkOut, CostOfStay) VALUES (@reservationID, @guestID, @roomIDs, @checkIn, @checkOut, @CostOfStay)";
+                string insertReservationQuery = @"INSERT INTO Reservations (reservationID, guestID, checkIn, checkOut, CostOfStay) VALUES (@reservationID, @guestID, @roomIDs, @checkIn, @checkOut, @costOfStay)";
                 SqlCommand insertReservationCommand = new SqlCommand(insertReservationQuery, connection, transaction);
                 insertReservationCommand.Parameters.AddWithValue("@reservationID", newReservationID);
                 insertReservationCommand.Parameters.AddWithValue("@guestID", reservation.Guest.GuestID);
-                insertReservationCommand.Parameters.AddWithValue("@roomIDs", string.Join(",", reservation.Rooms.Select(r => r.RoomID)));
                 insertReservationCommand.Parameters.AddWithValue("@checkIn", reservation.CheckIn);
                 insertReservationCommand.Parameters.AddWithValue("@checkOut", reservation.CheckOut);
-                insertReservationCommand.Parameters.AddWithValue("@CostOfStay", reservation.CostOfStay);
+                insertReservationCommand.Parameters.AddWithValue("@costOfStay", reservation.CostOfStay);
                 insertReservationCommand.ExecuteNonQuery();
 
-                // 3. Update each room's reservationID in the Rooms table
-                foreach (Room room in reservation.Rooms)
-                {
-                    string updateRoomQuery = "UPDATE Rooms SET reservationID = @reservationID WHERE roomID = @roomID";
-                    SqlCommand updateRoomCommand = new SqlCommand(updateRoomQuery, connection, transaction);
-                    updateRoomCommand.Parameters.AddWithValue("@reservationID", newReservationID);
-                    updateRoomCommand.Parameters.AddWithValue("@roomID", room.RoomID);
-                    updateRoomCommand.ExecuteNonQuery();
-                }
+                // 3. Add the bookings for each room to the Bookings table using the addToBookings() method
+                addToBookings(reservation.Rooms, newReservationID);
 
                 // Commit transaction if everything succeeded
                 transaction.Commit();
@@ -295,6 +287,41 @@ namespace BookingSystem.Data
             return newReservationID; // Return the new reservationID
         }
 
+
+        // A method to add a booking to the Bookings table
+        public void addToBookings(Collection<Room> rooms, int newReservationID)
+        {
+            try
+            {
+                // Generate the next bookingID by finding the MAX(bookingID) in the Bookings table
+                string getMaxBookingIDQuery = "SELECT ISNULL(MAX(bookingID), 0) FROM Bookings";
+                SqlCommand getMaxBookingIDCommand = new SqlCommand(getMaxBookingIDQuery, connection);
+                int nextBookingID = Convert.ToInt32(getMaxBookingIDCommand.ExecuteScalar()) + 1;
+
+                // For each room, insert a new row in the Bookings table
+                foreach (Room room in rooms)
+                {
+                    // Prepare the SQL query to insert the booking record
+                    string insertBookingQuery = "INSERT INTO Bookings (bookingID, reservationID, roomID) VALUES (@bookingID, @reservationID, @roomID)";
+                    SqlCommand insertBookingCommand = new SqlCommand(insertBookingQuery, connection);
+
+                    // Set the parameters for bookingID, reservationID, and roomID
+                    insertBookingCommand.Parameters.AddWithValue("@bookingID", nextBookingID);
+                    insertBookingCommand.Parameters.AddWithValue("@reservationID", newReservationID);
+                    insertBookingCommand.Parameters.AddWithValue("@roomID", room.RoomID);
+
+                    // Execute the query to insert the booking
+                    insertBookingCommand.ExecuteNonQuery();
+
+                    // Increment the bookingID for the next room
+                    nextBookingID++;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while adding bookings: " + ex.Message);
+            }
+        }
 
 
         // Define a method to fetch all guests in the DB
