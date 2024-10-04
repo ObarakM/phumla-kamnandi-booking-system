@@ -392,7 +392,7 @@
             // button3
             // 
             this.button3.BackgroundImage = global::BookingSystem.Properties.Resources.castle_4931672;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            //this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.button3.Location = new System.Drawing.Point(95, 24);
             this.button3.Name = "button3";

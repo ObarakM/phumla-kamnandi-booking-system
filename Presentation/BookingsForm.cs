@@ -55,8 +55,8 @@ namespace BookingSystem.Presentation
         private void button1_Click(object sender, EventArgs e)
         {
             
-            guest = new Guest(int.Parse(idTextBox.Text),nameTextBox.Text,int.Parse(phoneTextBox.Text),emailTextBox.Text);
-            reservation = new Reservation(guest, reservationForm.getRooms(),reservationForm.getCheckIn(),reservationForm.getCheckOut(), reservationForm.getCostOfStay());
+            //guest = new Guest(int.Parse(idTextBox.Text),nameTextBox.Text,int.Parse(phoneTextBox.Text),emailTextBox.Text);
+            //reservation = new Reservation(guest, reservationForm.getRooms(),reservationForm.getCheckIn(),reservationForm.getCheckOut(), reservationForm.getCostOfStay());
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -78,6 +78,11 @@ namespace BookingSystem.Presentation
             showFormInfo(false);
             showSearchInfo(true);
             headerLabel.Text = "Enter ID To Search For Existing Guest";
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

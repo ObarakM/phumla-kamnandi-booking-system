@@ -29,6 +29,11 @@ namespace BookingSystem.Presentation
         private int children = 0;
         private decimal costOfStay;
         private DB db = new DB();
+
+        private int selectableStandard = 0;
+        private int selectableStudio = 0;
+        private int selectableExecutive = 0;
+        private int selectableApartment = 0;
         #endregion
 
         public ReservationForm()
@@ -40,6 +45,11 @@ namespace BookingSystem.Presentation
             executive = new Room(3,1,1, Room.RoomType.Executive);
             apartment = new Room(4,1,1, Room.RoomType.OneBedroomApartment);
             rooms = new Collection<Room>();
+
+            selectableStandard = db.getFreeRoomsCount(Room.RoomType.Standard);
+            selectableExecutive = db.getFreeRoomsCount(Room.RoomType.Executive);
+            selectableStudio = db.getFreeRoomsCount(Room.RoomType.Studio);
+            selectableApartment = db.getFreeRoomsCount(Room.RoomType.OneBedroomApartment);
 
         }
 
@@ -120,6 +130,8 @@ namespace BookingSystem.Presentation
 
         }
 
+
+
         #region accessor methods
         public Collection<Room> getRooms()
         {
@@ -196,6 +208,14 @@ namespace BookingSystem.Presentation
             //set the list view and finish booking button visibility to true
             finishBookingButton.Visible=true;
             reservationListView.Visible=true;
+
+            selectableStandard--;
+            if (selectableStandard == 0)
+            {
+                pictureBox1.Visible=false;
+                roomDescription1.Visible=false;
+                select1.Visible=false;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -210,6 +230,14 @@ namespace BookingSystem.Presentation
             //set the list view and finish booking button visibility to true
             finishBookingButton.Visible = true;
             reservationListView.Visible = true;
+
+            selectableStudio--;
+            if (selectableStudio == 0)
+            {
+                pictureBox2.Visible = false;
+                roomDescription2.Visible = false;
+                select2.Visible = false;
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -224,6 +252,13 @@ namespace BookingSystem.Presentation
             //set the list view and finish booking button visibility to true
             finishBookingButton.Visible = true;
             reservationListView.Visible = true;
+            selectableExecutive--;
+            if (selectableExecutive == 0)
+            {
+                pictureBox3.Visible = false;
+                roomDescription3.Visible = false;
+                select3.Visible = false;
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -238,6 +273,13 @@ namespace BookingSystem.Presentation
             //set the list view and finish booking button visibility to true
             finishBookingButton.Visible = true;
             reservationListView.Visible = true;
+            selectableApartment--;
+            if (selectableApartment == 0)
+            {
+                pictureBox4.Visible = false;
+                roomDescription4.Visible = false;
+                select4.Visible = false;
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

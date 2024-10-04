@@ -38,11 +38,11 @@
             this.phoneTextBox = new System.Windows.Forms.TextBox();
             this.emailTextBox = new System.Windows.Forms.TextBox();
             this.header = new System.Windows.Forms.Label();
+            this.newGuestRadioButton1 = new System.Windows.Forms.RadioButton();
+            this.existingGuestRadioButton2 = new System.Windows.Forms.RadioButton();
             this.searchButton = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.completeReservationButton = new System.Windows.Forms.Button();
-            this.newGuestRadioButton1 = new System.Windows.Forms.RadioButton();
-            this.existingGuestRadioButton2 = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // idLabel
@@ -148,43 +148,6 @@
             this.header.TabIndex = 47;
             this.header.Text = "Phumla Kamnandi Hotel Group";
             // 
-            // searchButton
-            // 
-            this.searchButton.BackgroundImage = global::BookingSystem.Properties.Resources.pexels_lilartsy_1194775;
-            this.searchButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.searchButton.Location = new System.Drawing.Point(649, 383);
-            this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(96, 63);
-            this.searchButton.TabIndex = 49;
-            this.searchButton.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.BackgroundImage = global::BookingSystem.Properties.Resources.castle_4931672;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button3.Location = new System.Drawing.Point(159, 25);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(147, 82);
-            this.button3.TabIndex = 48;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // completeReservationButton
-            // 
-            this.completeReservationButton.BackColor = System.Drawing.Color.Transparent;
-            this.completeReservationButton.BackgroundImage = global::BookingSystem.Properties.Resources.pexels_soulful_pizza_2080276_3914755__1_;
-            this.completeReservationButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.completeReservationButton.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.completeReservationButton.ForeColor = System.Drawing.SystemColors.Control;
-            this.completeReservationButton.Location = new System.Drawing.Point(626, 646);
-            this.completeReservationButton.Name = "completeReservationButton";
-            this.completeReservationButton.Size = new System.Drawing.Size(119, 57);
-            this.completeReservationButton.TabIndex = 23;
-            this.completeReservationButton.Text = "Complete Reservation";
-            this.completeReservationButton.UseVisualStyleBackColor = false;
-            this.completeReservationButton.Click += new System.EventHandler(this.button1_Click);
-            // 
             // newGuestRadioButton1
             // 
             this.newGuestRadioButton1.AutoSize = true;
@@ -212,6 +175,44 @@
             this.existingGuestRadioButton2.Text = "Existing Guest";
             this.existingGuestRadioButton2.UseVisualStyleBackColor = true;
             this.existingGuestRadioButton2.CheckedChanged += new System.EventHandler(this.existingGuestRadioButton2_CheckedChanged);
+            // 
+            // searchButton
+            // 
+            this.searchButton.BackgroundImage = global::BookingSystem.Properties.Resources.pexels_lilartsy_1194775;
+            this.searchButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.searchButton.Location = new System.Drawing.Point(649, 383);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(96, 63);
+            this.searchButton.TabIndex = 49;
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            // 
+            // button3
+            // 
+            this.button3.BackgroundImage = global::BookingSystem.Properties.Resources.castle_4931672;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.button3.Location = new System.Drawing.Point(159, 25);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(147, 82);
+            this.button3.TabIndex = 48;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // completeReservationButton
+            // 
+            this.completeReservationButton.BackColor = System.Drawing.Color.Transparent;
+            this.completeReservationButton.BackgroundImage = global::BookingSystem.Properties.Resources.pexels_soulful_pizza_2080276_3914755__1_;
+            this.completeReservationButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.completeReservationButton.Font = new System.Drawing.Font("Lucida Sans Unicode", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.completeReservationButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.completeReservationButton.Location = new System.Drawing.Point(626, 646);
+            this.completeReservationButton.Name = "completeReservationButton";
+            this.completeReservationButton.Size = new System.Drawing.Size(119, 57);
+            this.completeReservationButton.TabIndex = 23;
+            this.completeReservationButton.Text = "Complete Reservation";
+            this.completeReservationButton.UseVisualStyleBackColor = false;
+            this.completeReservationButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // BookingsForm
             // 

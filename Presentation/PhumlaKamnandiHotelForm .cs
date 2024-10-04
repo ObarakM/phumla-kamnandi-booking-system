@@ -27,7 +27,9 @@ namespace BookingSystem.Presentation
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            ReportsForm reportsForm = new ReportsForm();
+            reportsForm.Show();
+            this.Hide();
         }
 
         private void Form1_Load(object sender, EventArgs e)
