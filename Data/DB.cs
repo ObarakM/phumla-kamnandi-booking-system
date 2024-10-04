@@ -261,17 +261,7 @@ namespace BookingSystem.Data
                 // Set the reservationID of the provided reservation object
                 reservation.ReservationID = newReservationID;
 
-                // 2. Update each room's reservationID in the Rooms table
-                foreach (Room room in reservation.Rooms)
-                {
-                    string updateRoomQuery = "UPDATE Rooms SET reservationID = @reservationID WHERE roomID = @roomID";
-                    SqlCommand updateRoomCommand = new SqlCommand(updateRoomQuery, connection, transaction);
-                    updateRoomCommand.Parameters.AddWithValue("@reservationID", newReservationID);
-                    updateRoomCommand.Parameters.AddWithValue("@roomID", room.RoomID);
-                    updateRoomCommand.ExecuteNonQuery();
-                }
-
-                // 3. Insert the new reservation row into the Reservations table
+                // 2. Insert the new reservation row into the Reservations table
                 string insertReservationQuery = @"INSERT INTO Reservations (reservationID, guestID, roomIDs, checkIn, checkOut, CostOfStay) VALUES (@reservationID, @guestID, @roomIDs, @checkIn, @checkOut, @CostOfStay)";
                 SqlCommand insertReservationCommand = new SqlCommand(insertReservationQuery, connection, transaction);
                 insertReservationCommand.Parameters.AddWithValue("@reservationID", newReservationID);
@@ -281,6 +271,16 @@ namespace BookingSystem.Data
                 insertReservationCommand.Parameters.AddWithValue("@checkOut", reservation.CheckOut);
                 insertReservationCommand.Parameters.AddWithValue("@CostOfStay", reservation.CostOfStay);
                 insertReservationCommand.ExecuteNonQuery();
+
+                // 3. Update each room's reservationID in the Rooms table
+                foreach (Room room in reservation.Rooms)
+                {
+                    string updateRoomQuery = "UPDATE Rooms SET reservationID = @reservationID WHERE roomID = @roomID";
+                    SqlCommand updateRoomCommand = new SqlCommand(updateRoomQuery, connection, transaction);
+                    updateRoomCommand.Parameters.AddWithValue("@reservationID", newReservationID);
+                    updateRoomCommand.Parameters.AddWithValue("@roomID", room.RoomID);
+                    updateRoomCommand.ExecuteNonQuery();
+                }
 
                 // Commit transaction if everything succeeded
                 transaction.Commit();
