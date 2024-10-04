@@ -34,7 +34,6 @@
             this.cardNumberLabel = new System.Windows.Forms.Label();
             this.securityCodeTextBox = new System.Windows.Forms.TextBox();
             this.securityCodeLabel = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
             this.header = new System.Windows.Forms.Label();
             this.makePaymentButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -96,17 +95,6 @@
             this.securityCodeLabel.TabIndex = 26;
             this.securityCodeLabel.Text = "Security Code";
             // 
-            // button3
-            // 
-            this.button3.BackgroundImage = global::BookingSystem.Properties.Resources.castle_4931672;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button3.Location = new System.Drawing.Point(33, 22);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(147, 82);
-            this.button3.TabIndex = 48;
-            this.button3.UseVisualStyleBackColor = true;
-            // 
             // header
             // 
             this.header.AllowDrop = true;
@@ -116,11 +104,12 @@
             this.header.Font = new System.Drawing.Font("Lucida Calligraphy", 56.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.header.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.header.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.header.Location = new System.Drawing.Point(217, 21);
+            this.header.Location = new System.Drawing.Point(452, 27);
             this.header.Name = "header";
-            this.header.Size = new System.Drawing.Size(1356, 97);
+            this.header.Size = new System.Drawing.Size(649, 97);
             this.header.TabIndex = 47;
-            this.header.Text = "Phumla Kamnandi Hotel Group";
+            this.header.Text = "Card Company";
+            this.header.Click += new System.EventHandler(this.header_Click);
             // 
             // makePaymentButton
             // 
@@ -143,7 +132,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1531, 405);
             this.Controls.Add(this.makePaymentButton);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.header);
             this.Controls.Add(this.securityCodeTextBox);
             this.Controls.Add(this.securityCodeLabel);
@@ -167,7 +155,6 @@
         private System.Windows.Forms.Label cardNumberLabel;
         private System.Windows.Forms.TextBox securityCodeTextBox;
         private System.Windows.Forms.Label securityCodeLabel;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label header;
         private System.Windows.Forms.Button makePaymentButton;
     }

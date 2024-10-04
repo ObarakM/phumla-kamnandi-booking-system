@@ -89,6 +89,7 @@ namespace BookingSystem.Presentation
 
                     int reference = db.makeReservation(reservation);
                     MessageBox.Show("Reservation complete and the reference number is: " + reference);
+                    clearTextBoxes();
                 }
                 else
                 {
@@ -98,8 +99,7 @@ namespace BookingSystem.Presentation
 
 
             }
-            //guest = new Guest(int.Parse(idTextBox.Text),nameTextBox.Text,int.Parse(phoneTextBox.Text),emailTextBox.Text);
-            //reservation = new Reservation(guest, reservationForm.getRooms(),reservationForm.getCheckIn(),reservationForm.getCheckOut(), reservationForm.getCostOfStay());
+            
         }
 
         private void button3_Click(object sender, EventArgs e)

@@ -31,5 +31,9 @@ namespace BookingSystem.Presentation
             this.Close(); // Close the form
         }
 
+        private void header_Click(object sender, EventArgs e)
+        {
+            this.StartPosition= FormStartPosition.CenterScreen;
+        }
     }
 }
