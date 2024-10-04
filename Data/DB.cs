@@ -34,7 +34,7 @@ namespace BookingSystem.Data
         #region CRUD Methods
 
         // Define method to fetch all rooms belonging to a given hotel (dependent on the hotelID as a foreign key of a room)
-        public Collection<Room> GetAllRooms()
+        public Collection<Room> getAllRooms()
         {
             Collection<Room> rooms = new Collection<Room>();
 
