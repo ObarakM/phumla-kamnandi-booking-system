@@ -75,6 +75,51 @@ namespace BookingSystem.Data
             return rooms;
         }
 
+        public Collection<Room> getFreeRoomsByType(Room.RoomType roomType)
+        {
+            Collection<Room> rooms = new Collection<Room>();
+
+            try
+            {
+                // Define the query to fetch rooms of a specific RoomType
+                string query = "SELECT * FROM Rooms WHERE roomType = @RoomType";
+
+                // Initialize the command object with the query and connection
+                command = new SqlCommand(query, connection);
+
+                // Add the roomType parameter to the command (cast roomType to int to match the database enum value)
+                command.Parameters.AddWithValue("@RoomType", (int)roomType);
+
+                // Execute the query and store the results in a data reader
+                dataReader = command.ExecuteReader();
+
+                // Iterate through the result set and populate the collection of rooms
+                while (dataReader.Read())
+                {
+                    Room room = new Room
+                    (
+                        Convert.ToInt32(dataReader["roomID"]),
+                        Convert.ToInt32(dataReader["hotelID"]),
+                        dataReader["reservationID"] as int?,
+                        (Room.RoomType)Convert.ToInt32(dataReader["roomType"])
+                    );
+
+                    rooms.Add(room);
+                }
+
+                // Close the reader after reading
+                dataReader.Close();
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions (log it or throw it up to the caller)
+                Console.WriteLine("An error occurred while fetching rooms by type: " + ex.Message);
+            }
+
+            return rooms;
+        }
+
+
         public int getFreeRoomsCount(RoomType roomType)
         {
             int freeRoomsCount = 0;
@@ -196,7 +241,6 @@ namespace BookingSystem.Data
             // Return the newly generated guestID
             return newGuestID;
         }
-
 
         // Define a method to fetch all guests in the DB
 
