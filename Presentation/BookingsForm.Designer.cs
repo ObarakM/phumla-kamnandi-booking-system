@@ -151,6 +151,7 @@
             // newGuestRadioButton1
             // 
             this.newGuestRadioButton1.AutoSize = true;
+            this.newGuestRadioButton1.BackColor = System.Drawing.Color.Transparent;
             this.newGuestRadioButton1.Font = new System.Drawing.Font("Lucida Sans Unicode", 18F, System.Drawing.FontStyle.Italic);
             this.newGuestRadioButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.newGuestRadioButton1.Location = new System.Drawing.Point(245, 286);
@@ -159,12 +160,13 @@
             this.newGuestRadioButton1.TabIndex = 50;
             this.newGuestRadioButton1.TabStop = true;
             this.newGuestRadioButton1.Text = "New Guest";
-            this.newGuestRadioButton1.UseVisualStyleBackColor = true;
+            this.newGuestRadioButton1.UseVisualStyleBackColor = false;
             this.newGuestRadioButton1.CheckedChanged += new System.EventHandler(this.newGuestRadioButton1_CheckedChanged);
             // 
             // existingGuestRadioButton2
             // 
             this.existingGuestRadioButton2.AutoSize = true;
+            this.existingGuestRadioButton2.BackColor = System.Drawing.Color.Transparent;
             this.existingGuestRadioButton2.Font = new System.Drawing.Font("Lucida Sans Unicode", 18F, System.Drawing.FontStyle.Italic);
             this.existingGuestRadioButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.existingGuestRadioButton2.Location = new System.Drawing.Point(548, 286);
@@ -173,7 +175,7 @@
             this.existingGuestRadioButton2.TabIndex = 51;
             this.existingGuestRadioButton2.TabStop = true;
             this.existingGuestRadioButton2.Text = "Existing Guest";
-            this.existingGuestRadioButton2.UseVisualStyleBackColor = true;
+            this.existingGuestRadioButton2.UseVisualStyleBackColor = false;
             this.existingGuestRadioButton2.CheckedChanged += new System.EventHandler(this.existingGuestRadioButton2_CheckedChanged);
             // 
             // searchButton

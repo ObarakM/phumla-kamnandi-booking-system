@@ -24,6 +24,7 @@ namespace BookingSystem.Presentation
         public BookingsForm()
         {
             InitializeComponent();
+            
         }
 
         public void showFormInfo(bool value)
@@ -46,7 +47,7 @@ namespace BookingSystem.Presentation
         private void BookingsForm_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-            reservationForm = new ReservationForm();
+            reservationForm = ReservationForm.reservationForm;
             bookingform = new BookingsForm();
             showFormInfo(false);
             idLabel.Visible = false;
