@@ -56,7 +56,7 @@ namespace BookingSystem.Data
                     (
                         Convert.ToInt32(dataReader["roomID"]),
                         Convert.ToInt32(dataReader["hotelID"]),
-                        Convert.ToInt32(dataReader["reservationID"]),
+                        dataReader["reservationID"] as int?,
                         (RoomType)Convert.ToInt32(dataReader["roomType"])
                     );
 
