@@ -151,7 +151,7 @@
             // newGuestRadioButton1
             // 
             this.newGuestRadioButton1.AutoSize = true;
-            this.newGuestRadioButton1.BackColor = System.Drawing.Color.Transparent;
+            this.newGuestRadioButton1.BackColor = System.Drawing.Color.Black;
             this.newGuestRadioButton1.Font = new System.Drawing.Font("Lucida Sans Unicode", 18F, System.Drawing.FontStyle.Italic);
             this.newGuestRadioButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.newGuestRadioButton1.Location = new System.Drawing.Point(245, 286);
@@ -166,7 +166,7 @@
             // existingGuestRadioButton2
             // 
             this.existingGuestRadioButton2.AutoSize = true;
-            this.existingGuestRadioButton2.BackColor = System.Drawing.Color.Transparent;
+            this.existingGuestRadioButton2.BackColor = System.Drawing.Color.Black;
             this.existingGuestRadioButton2.Font = new System.Drawing.Font("Lucida Sans Unicode", 18F, System.Drawing.FontStyle.Italic);
             this.existingGuestRadioButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.existingGuestRadioButton2.Location = new System.Drawing.Point(548, 286);

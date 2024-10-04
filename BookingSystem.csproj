@@ -72,6 +72,12 @@
     <Compile Include="Business\Reservation.cs" />
     <Compile Include="Business\Room.cs" />
     <Compile Include="Data\DB.cs" />
+    <Compile Include="Presentation\AccountDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\AccountDetailsForm.Designer.cs">
+      <DependentUpon>AccountDetailsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\BookingListing.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Presentation\AccountDetailsForm.resx">
+      <DependentUpon>AccountDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation\BookingListing.resx">
       <DependentUpon>BookingListing.cs</DependentUpon>
     </EmbeddedResource>
