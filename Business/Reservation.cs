@@ -7,6 +7,7 @@ namespace BookingSystem.Business
 	public class Reservation
 	{
         #region Field Members
+        private int reservationID;
 		private Guest guest; // A reference to the respective guest
 		private Collection<Room> rooms; // The reference to the respective rooms booked by the guest
 		private DateTime checkIn;
@@ -16,6 +17,7 @@ namespace BookingSystem.Business
         #endregion
 
         #region Property Methods
+        public int ReservationID { get { return reservationID; } set { reservationID = value; } }
         public Guest Guest { get { return guest; } set { guest = value; } }
 
         public Collection<Room> Rooms { get { return rooms; } set { rooms = value; } }
@@ -27,7 +29,7 @@ namespace BookingSystem.Business
         #endregion 
 
         #region Constructors
-        public Reservation(Guest guest, Collection<Room> rooms, DateTime checkIn, DateTime checkOut, decimal costOfStay)
+        public Reservation(int reservationID, Guest guest, Collection<Room> rooms, DateTime checkIn, DateTime checkOut, decimal costOfStay)
 		{
             this.guest = guest;
             this.rooms = rooms;
