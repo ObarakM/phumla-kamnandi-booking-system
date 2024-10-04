@@ -90,6 +90,12 @@
     <Compile Include="Presentation\PhumlaKamnandiHotelForm .Designer.cs">
       <DependentUpon>PhumlaKamnandiHotelForm .cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation\ReportsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation\ReportsForm.Designer.cs">
+      <DependentUpon>ReportsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation\ReservationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\PhumlaKamnandiHotelForm .resx">
       <DependentUpon>PhumlaKamnandiHotelForm .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation\ReportsForm.resx">
+      <DependentUpon>ReportsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation\ReservationForm.resx">
       <DependentUpon>ReservationForm.cs</DependentUpon>
