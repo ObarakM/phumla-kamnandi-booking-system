@@ -31,6 +31,7 @@ namespace BookingSystem.Business
         #region Constructors
         public Reservation(int reservationID, Guest guest, Collection<Room> rooms, DateTime checkIn, DateTime checkOut, decimal costOfStay)
 		{
+            this.reservationID = reservationID;
             this.guest = guest;
             this.rooms = rooms;
             this.checkIn = checkIn;
