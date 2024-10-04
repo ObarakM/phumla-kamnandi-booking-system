@@ -23,13 +23,32 @@ namespace BookingSystem.Presentation
             InitializeComponent();
         }
 
-   
+        public void showFormInfo(bool value)
+        {
+            nameLabel.Visible = value;
+            phoneLabel.Visible = value; 
+            emailLabel.Visible = value;
+            nameTextBox.Visible = value;
+            phoneTextBox.Visible = value;
+            emailTextBox.Visible = value;
+            completeReservationButton.Visible = value;
+        }
+        public void showSearchInfo(bool value)
+        {
+            idLabel.Visible = value;
+            idTextBox.Visible = value;
+            searchButton.Visible = value;
+        }
 
         private void BookingsForm_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
             reservationForm = new ReservationForm();
             bookingform = new BookingsForm();
+            showFormInfo(false);
+            idLabel.Visible = false;
+            idTextBox.Visible = false;
+            searchButton.Visible = false;
 
         }
 
@@ -44,6 +63,21 @@ namespace BookingSystem.Presentation
         {
             ReservationForm.reservationForm.Show();
             this.Close();
+        }
+
+        private void newGuestRadioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            showFormInfo(true);
+            showSearchInfo(false);
+            completeReservationButton.Text = "Create Guest";
+            headerLabel.Text = "Enter New Guest's Details";
+        }
+
+        private void existingGuestRadioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            showFormInfo(false);
+            showSearchInfo(true);
+            headerLabel.Text = "Enter ID To Search For Existing Guest";
         }
     }
 }
