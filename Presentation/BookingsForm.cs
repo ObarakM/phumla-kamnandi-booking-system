@@ -26,6 +26,11 @@ namespace BookingSystem.Presentation
             InitializeComponent();
             
         }
+        #region
+        // testing for message box
+
+        #endregion
+
 
         public void showFormInfo(bool value)
         {
@@ -66,15 +71,32 @@ namespace BookingSystem.Presentation
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             if (newGuestRadioButton1.Checked)
             {
                 idTextBox.Text = db.addGuest(nameTextBox.Text,int.Parse(phoneTextBox.Text),emailTextBox.Text).ToString();
             }
             if (existingGuestRadioButton2.Checked)
             {
-                reservation = new Reservation(0,currentGuest, reservationForm.getRooms(),reservationForm.getCheckIn(),reservationForm.getCheckOut(), reservationForm.getCostOfStay());
-                int reference = db.makeReservation(reservation);
-                MessageBox.Show("Rervation complete and the reference number is: "+reference);
+                AccountDetailsForm accountDetailsForm = new AccountDetailsForm();
+                DialogResult result = accountDetailsForm.ShowDialog(); // This will block until the form is closed
+
+                // Check if the form was closed successfully
+                if (result == DialogResult.OK) // Adjust this condition based on your form's logic
+                {
+                    // Proceed with creating the reservation only if the form was closed successfully
+                    reservation = new Reservation(0, currentGuest, reservationForm.getRooms(), reservationForm.getCheckIn(), reservationForm.getCheckOut(), reservationForm.getCostOfStay());
+
+                    int reference = db.makeReservation(reservation);
+                    MessageBox.Show("Reservation complete and the reference number is: " + reference);
+                }
+                else
+                {
+                    // Handle cases where the user canceled or closed the AccountDetailsForm without completing the action
+                    MessageBox.Show("The payment was not completed.");
+                }
+
+
             }
             //guest = new Guest(int.Parse(idTextBox.Text),nameTextBox.Text,int.Parse(phoneTextBox.Text),emailTextBox.Text);
             //reservation = new Reservation(guest, reservationForm.getRooms(),reservationForm.getCheckIn(),reservationForm.getCheckOut(), reservationForm.getCostOfStay());
