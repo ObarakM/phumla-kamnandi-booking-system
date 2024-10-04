@@ -75,76 +75,65 @@ namespace BookingSystem.Data
             return rooms;
         }
 
-        public Collection<Room> getFreeRoomsByType(Room.RoomType roomType)
+        // A method to return a collection of free rooms of the given type at a particular date
+        public Collection<Room> getFreeRoomsByType(Room.RoomType roomType, DateTime checkIn, DateTime checkOut)
         {
-            Collection<Room> rooms = new Collection<Room>();
+            Collection<Room> freeRooms = new Collection<Room>(); // Collection to store available rooms
 
             try
             {
-                // Define the query to fetch rooms of a specific RoomType
-                string query = "SELECT * FROM Rooms WHERE roomType = @RoomType";
+                // SQL query to find rooms of the specified type that are not booked OR booked but available in the given date range
+                string query = @"
+            SELECT r.roomID, r.hotelID, r.dailyRate, r.roomType 
+            FROM Rooms r
+            LEFT JOIN Bookings b ON r.roomID = b.roomID
+            LEFT JOIN Reservations res ON b.reservationID = res.reservationID
+            WHERE r.roomType = @roomType
+            AND (
+                -- If there's no booking for this room
+                b.roomID IS NULL 
+                OR 
+                -- If room is booked, check if it's free during the specified period
+                (res.checkIn > @checkOut OR res.checkOut < @checkIn)
+            )";
 
-                // Initialize the command object with the query and connection
-                command = new SqlCommand(query, connection);
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@roomType", (int)roomType); // Room type is stored as an int in the DB
+                command.Parameters.AddWithValue("@checkIn", checkIn);
+                command.Parameters.AddWithValue("@checkOut", checkOut);
 
-                // Add the roomType parameter to the command (cast roomType to int to match the database enum value)
-                command.Parameters.AddWithValue("@RoomType", (int)roomType);
-
-                // Execute the query and store the results in a data reader
-                dataReader = command.ExecuteReader();
-
-                // Iterate through the result set and populate the collection of rooms
-                while (dataReader.Read())
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    Room room = new Room
-                    (
-                        Convert.ToInt32(dataReader["roomID"]),
-                        Convert.ToInt32(dataReader["hotelID"]),
-                        dataReader["reservationID"] as int?,
-                        (Room.RoomType)Convert.ToInt32(dataReader["roomType"])
-                    );
+                    while (reader.Read())
+                    {
+                        // Retrieve room details from the query result
+                        int roomID = reader.GetInt32(0);
+                        int hotelID = reader.GetInt32(1);
+                        decimal dailyRate = reader.GetDecimal(2);
+                        Room.RoomType type = (Room.RoomType)reader.GetInt32(3);
 
-                    rooms.Add(room);
+                        // Create a Room object and add it to the collection
+                        Room room = new Room(roomID, hotelID, null, type)
+                        {
+                            DailyRate = dailyRate
+                        };
+
+                        freeRooms.Add(room);
+                    }
                 }
-
-                // Close the reader after reading
-                dataReader.Close();
             }
             catch (Exception ex)
             {
-                // Handle any exceptions (log it or throw it up to the caller)
-                Console.WriteLine("An error occurred while fetching rooms by type: " + ex.Message);
+                throw new Exception("An error occurred while retrieving free rooms: " + ex.Message);
             }
 
-            return rooms;
+            return freeRooms; // Return the collection of free rooms
         }
 
-
-        public int getFreeRoomsCount(RoomType roomType)
+        // A method to get the number of free rooms of a certain type
+        public int getFreeRoomsCount(Room.RoomType roomType, DateTime checkIn, DateTime checkOut)
         {
-            int freeRoomsCount = 0;
-
-            try
-            {
-                // Define the query to count rooms of the specific type that have null in ReservationID
-                string query = "SELECT COUNT(*) FROM Rooms WHERE RoomType = @RoomType AND ReservationID IS NULL";
-
-                // Initialize the command object with the query and connection
-                command = new SqlCommand(query, connection);
-
-                // Add parameter to avoid SQL injection (RoomType is an enum, cast it to int)
-                command.Parameters.AddWithValue("@RoomType", (int)roomType);
-
-                // Execute the query and get the count result
-                freeRoomsCount = (int)command.ExecuteScalar(); // ExecuteScalar returns a single value (the count)
-            }
-            catch (Exception ex)
-            {
-                // Handle any exceptions
-                Console.WriteLine("An error occurred while counting free rooms: " + ex.Message);
-            }
-
-            return freeRoomsCount; // Return the number of free rooms of the given type
+            return getFreeRoomsByType(roomType, checkIn, checkOut).Count; // Return the number of free rooms of the given type
         }
 
         // Method to search for a guest in the DB
