@@ -146,10 +146,59 @@ namespace BookingSystem.Data
             return guest; // Return the found guest or null if not found
         }
 
+        // Define a method to add a new guest to the Guests table in the DB and return the generated guestID
+        public int addGuest(string name, int phone, string email)
+        {
+            int newGuestID = 0;
+
+            try
+            {
+                // Step 1: Find the biggest guestID in the Guests table
+                string queryMaxID = "SELECT MAX(guestID) FROM Guests";
+
+                // Initialize the command to find the maximum guestID
+                command = new SqlCommand(queryMaxID, connection);
+
+                // Execute the query and get the result
+                object result = command.ExecuteScalar();
+
+                // If no guests are in the table (result is DBNull), start with guestID = 1
+                if (result != DBNull.Value)
+                {
+                    newGuestID = Convert.ToInt32(result) + 1;
+                }
+                else
+                {
+                    newGuestID = 1; // First guest if table is empty
+                }
+
+                // Step 2: Insert the new guest into the Guests table
+                string insertQuery = "INSERT INTO Guests (guestID, name, phone, email) VALUES (@GuestID, @Name, @Phone, @Email)";
+
+                // Initialize the command for the insert operation
+                command = new SqlCommand(insertQuery, connection);
+
+                // Add parameters to avoid SQL injection
+                command.Parameters.AddWithValue("@GuestID", newGuestID);
+                command.Parameters.AddWithValue("@Name", name);
+                command.Parameters.AddWithValue("@Phone", phone);
+                command.Parameters.AddWithValue("@Email", email);
+
+                // Execute the insert query
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions (you could log it or throw the exception up to the caller)
+                Console.WriteLine("An error occurred while adding the guest: " + ex.Message);
+            }
+
+            // Return the newly generated guestID
+            return newGuestID;
+        }
+
 
         // Define a method to fetch all guests in the DB
-
-        // Define a method to add a new guest to the Guests table in the DB
 
 
         // Define a method to fetch all rooms (this infor will be used by form to create rooms - ONLY when reservationID is null, room CAN be reserved)
