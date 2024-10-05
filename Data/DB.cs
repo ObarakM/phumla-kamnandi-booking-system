@@ -251,7 +251,7 @@ namespace BookingSystem.Data
                 reservation.ReservationID = newReservationID;
 
                 // 2. Insert the new reservation row into the Reservations table
-                string insertReservationQuery = @"INSERT INTO Reservations (reservationID, guestID, checkIn, checkOut, CostOfStay) VALUES (@reservationID, @guestID, @roomIDs, @checkIn, @checkOut, @costOfStay)";
+                string insertReservationQuery = @"INSERT INTO Reservations (reservationID, guestID, checkIn, checkOut, CostOfStay) VALUES (@reservationID, @guestID, @checkIn, @checkOut, @costOfStay)";
                 SqlCommand insertReservationCommand = new SqlCommand(insertReservationQuery, connection, transaction);
                 insertReservationCommand.Parameters.AddWithValue("@reservationID", newReservationID);
                 insertReservationCommand.Parameters.AddWithValue("@guestID", reservation.Guest.GuestID);
@@ -261,7 +261,7 @@ namespace BookingSystem.Data
                 insertReservationCommand.ExecuteNonQuery();
 
                 // 3. Add the bookings for each room to the Bookings table using the addToBookings() method
-                addToBookings(reservation.Rooms, newReservationID);
+                addToBookings(reservation.Rooms, newReservationID, transaction);
 
                 // Commit transaction if everything succeeded
                 transaction.Commit();
@@ -278,13 +278,13 @@ namespace BookingSystem.Data
 
 
         // A method to add a booking to the Bookings table
-        public void addToBookings(Collection<Room> rooms, int newReservationID)
+        public void addToBookings(Collection<Room> rooms, int newReservationID, SqlTransaction transaction)
         {
             try
             {
                 // Generate the next bookingID by finding the MAX(bookingID) in the Bookings table
                 string getMaxBookingIDQuery = "SELECT ISNULL(MAX(bookingID), 0) FROM Bookings";
-                SqlCommand getMaxBookingIDCommand = new SqlCommand(getMaxBookingIDQuery, connection);
+                SqlCommand getMaxBookingIDCommand = new SqlCommand(getMaxBookingIDQuery, connection, transaction); // Pass the transaction
                 int nextBookingID = Convert.ToInt32(getMaxBookingIDCommand.ExecuteScalar()) + 1;
 
                 // For each room, insert a new row in the Bookings table
@@ -292,7 +292,7 @@ namespace BookingSystem.Data
                 {
                     // Prepare the SQL query to insert the booking record
                     string insertBookingQuery = "INSERT INTO Bookings (bookingID, reservationID, roomID) VALUES (@bookingID, @reservationID, @roomID)";
-                    SqlCommand insertBookingCommand = new SqlCommand(insertBookingQuery, connection);
+                    SqlCommand insertBookingCommand = new SqlCommand(insertBookingQuery, connection, transaction); // Pass the transaction
 
                     // Set the parameters for bookingID, reservationID, and roomID
                     insertBookingCommand.Parameters.AddWithValue("@bookingID", nextBookingID);
@@ -311,6 +311,15 @@ namespace BookingSystem.Data
                 throw new Exception("An error occurred while adding bookings: " + ex.Message);
             }
         }
+
+        public void CloseConnection()
+        {
+            if (connection != null && connection.State == System.Data.ConnectionState.Open)
+            {
+                connection.Close();
+            }
+        }
+
 
 
         // Define a method to fetch all guests in the DB
