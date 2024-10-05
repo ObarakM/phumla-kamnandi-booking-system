@@ -84,10 +84,12 @@ namespace BookingSystem.Presentation
             if (adults==0 ) { // assuming children cannot be in the hotel without an adult
                 value = false;
             }
+            // Write an if statement to stop trying if value is false! return
+            
             for (int i = 0; i < 4; i++) // check if rooms are available
             {
                 // Check if rooms are available AND if 'value' (based on adults) is true
-                if (db.getFreeRoomsCount((Room.RoomType)i, checkIn, checkOut) != 0 && value)
+                if (value && db.getFreeRoomsCount((Room.RoomType)i, checkIn, checkOut) != 0)
                 {
                     SetRoomVisibility((Room.RoomType)i, true);
                 }
