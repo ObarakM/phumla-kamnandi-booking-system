@@ -67,6 +67,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BookingDatabaseDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Data\DB2.cs" />
     <Compile Include="Business\Guest.cs" />
     <Compile Include="Business\Hotel.cs" />
     <Compile Include="Business\Reservation.cs" />

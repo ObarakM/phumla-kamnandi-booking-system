@@ -1,9 +1,8 @@
 ﻿using BookingSystem.Business;
-using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,113 +12,83 @@ namespace BookingSystem.Data
 {
     public class DB
     {
-
         #region Field Members
-        SqlConnection connection;
-        SqlCommand command;
-        SqlDataReader dataReader;
-        SqlDataAdapter dataAdapter;
-
+        DB2 db2;  // Use DB2 for database interactions
         #endregion
 
         #region Constructor
         public DB()
         {
-            connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\BookingDatabase.mdf;Integrated Security=True");
-            connection.Open();
+            db2 = new DB2(); // Initialize DB2 instance for connection management
         }
 
         #endregion
 
         #region CRUD Methods
 
-        // Define method to fetch all rooms belonging to a given hotel (dependent on the hotelID as a foreign key of a room)
+        // Method to fetch all rooms from the database
         public Collection<Room> getAllRooms()
         {
             Collection<Room> rooms = new Collection<Room>();
 
             try
             {
-                // Define the query to fetch all rooms with reservationID being null (i.e., unreserved rooms)
+                // Use DB2 to fetch rooms data from the database
                 string query = "SELECT * FROM Rooms";
+                db2.FillDataSet(query, "Rooms");
 
-                // Initialize the command object with the query and connection
-                command = new SqlCommand(query, connection);
-
-                // Execute the query and store the results in a data reader
-                dataReader = command.ExecuteReader();
-
-                // Iterate through the result set and populate the collection of rooms
-                while (dataReader.Read())
+                // Iterate over the result set in the dataset and populate the collection of rooms
+                foreach (DataRow row in db2.dsMain.Tables["Rooms"].Rows)
                 {
-                    Room room = new Room
-                    (
-                        Convert.ToInt32(dataReader["roomID"]),
-                        Convert.ToInt32(dataReader["hotelID"]),
-                        dataReader["reservationID"] as int?,
-                        (RoomType)Convert.ToInt32(dataReader["roomType"])
+                    Room room = new Room(
+                        Convert.ToInt32(row["roomID"]),
+                        Convert.ToInt32(row["hotelID"]),
+                        (RoomType)Convert.ToInt32(row["roomType"])
                     );
-
                     rooms.Add(room);
                 }
-
-                // Close the reader after reading
-                dataReader.Close();
             }
             catch (Exception ex)
             {
-                // Handle any exceptions (you could log it or throw the exception up to the caller)
                 Console.WriteLine("An error occurred while fetching the rooms: " + ex.Message);
             }
 
             return rooms;
         }
 
-        // A method to return a collection of free rooms of the given type at a particular date
+        // Method to get free rooms of a given type in a date range
         public Collection<Room> getFreeRoomsByType(Room.RoomType roomType, DateTime checkIn, DateTime checkOut)
         {
-            Collection<Room> freeRooms = new Collection<Room>(); // Collection to store available rooms
+            Collection<Room> freeRooms = new Collection<Room>();
 
             try
             {
-                // SQL query to find rooms of the specified type that are not booked OR booked but available in the given date range
+                // SQL query to find rooms of the specified type that are free in the date range
                 string query = @"
-            SELECT r.roomID, r.hotelID, r.dailyRate, r.roomType 
-            FROM Rooms r
-            LEFT JOIN Bookings b ON r.roomID = b.roomID
-            LEFT JOIN Reservations res ON b.reservationID = res.reservationID
-            WHERE r.roomType = @roomType
-            AND (
-                -- If there's no booking for this room
-                b.roomID IS NULL 
-                OR 
-                -- If room is booked, check if it's free during the specified period
-                (res.checkIn > @checkOut OR res.checkOut < @checkIn)
-            )";
+                SELECT r.roomID, r.hotelID, r.dailyRate, r.roomType 
+                FROM Rooms r
+                LEFT JOIN Bookings b ON r.roomID = b.roomID
+                LEFT JOIN Reservations res ON b.reservationID = res.reservationID
+                WHERE r.roomType = " + (int)roomType + @"
+                AND (
+                    b.roomID IS NULL OR 
+                    (res.checkIn > '" + checkOut.ToString("yyyy-MM-dd") + @"' 
+                    OR res.checkOut < '" + checkIn.ToString("yyyy-MM-dd") + @"')
+                )";
 
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@roomType", (int)roomType); // Room type is stored as an int in the DB
-                command.Parameters.AddWithValue("@checkIn", checkIn);
-                command.Parameters.AddWithValue("@checkOut", checkOut);
+                db2.FillDataSet(query, "FreeRooms");
 
-                using (SqlDataReader reader = command.ExecuteReader())
+                foreach (DataRow row in db2.dsMain.Tables["FreeRooms"].Rows)
                 {
-                    while (reader.Read())
+                    Room room = new Room(
+                        Convert.ToInt32(row["roomID"]),
+                        Convert.ToInt32(row["hotelID"]),
+                        (RoomType)Convert.ToInt32(row["roomType"])
+                    )
                     {
-                        // Retrieve room details from the query result
-                        int roomID = reader.GetInt32(0);
-                        int hotelID = reader.GetInt32(1);
-                        decimal dailyRate = reader.GetDecimal(2);
-                        Room.RoomType type = (Room.RoomType)reader.GetInt32(3);
-
-                        // Create a Room object and add it to the collection
-                        Room room = new Room(roomID, hotelID, null, type)
-                        {
-                            DailyRate = dailyRate
-                        };
-
-                        freeRooms.Add(room);
-                    }
+                        DailyRate = Convert.ToDecimal(row["dailyRate"])
+                    };
+                    freeRooms.Add(room);
                 }
             }
             catch (Exception ex)
@@ -127,216 +96,171 @@ namespace BookingSystem.Data
                 throw new Exception("An error occurred while retrieving free rooms: " + ex.Message);
             }
 
-            return freeRooms; // Return the collection of free rooms
+            return freeRooms;
         }
 
-        // A method to get the number of free rooms of a certain type
+        // Method to get the count of free rooms
         public int getFreeRoomsCount(Room.RoomType roomType, DateTime checkIn, DateTime checkOut)
         {
-            return getFreeRoomsByType(roomType, checkIn, checkOut).Count; // Return the number of free rooms of the given type
+            return getFreeRoomsByType(roomType, checkIn, checkOut).Count;
         }
 
-        // Method to search for a guest in the DB
+        // Method to find a guest by guestID
         public Guest findGuest(int guestID)
         {
             Guest guest = null;
 
             try
             {
-                // Define the query to search for the guest by guestID
-                string query = "SELECT * FROM Guests WHERE guestID = @GuestID";
+                string query = "SELECT * FROM Guests WHERE guestID = " + guestID;
+                db2.FillDataSet(query, "Guests");
 
-                // Initialize the command object with the query and connection
-                command = new SqlCommand(query, connection);
-
-                // Add parameter to avoid SQL injection
-                command.Parameters.AddWithValue("@GuestID", guestID);
-
-                // Execute the query and store the result in a data reader
-                dataReader = command.ExecuteReader();
-
-                // Check if any record is found
-                if (dataReader.Read())
+                if (db2.dsMain.Tables["Guests"].Rows.Count > 0)
                 {
-                    // Create a new Guest object and populate it with data from the database
-                    guest = new Guest
-                    (
-                        Convert.ToInt32(dataReader["guestID"]),
-                        dataReader["name"].ToString(),
-                        Convert.ToInt32(dataReader["phone"]),
-                        dataReader["email"].ToString()
+                    DataRow row = db2.dsMain.Tables["Guests"].Rows[0];
+                    guest = new Guest(
+                        Convert.ToInt32(row["guestID"]),
+                        row["name"].ToString(),
+                        Convert.ToInt32(row["phone"]),
+                        row["email"].ToString()
                     );
                 }
-
-                // Close the reader after reading
-                dataReader.Close();
             }
             catch (Exception ex)
             {
-                // Handle any exceptions (you could log it or throw the exception up to the caller)
                 Console.WriteLine("An error occurred while searching for the guest: " + ex.Message);
             }
 
-            return guest; // Return the found guest or null if not found
+            return guest;
         }
 
-        // Define a method to add a new guest to the Guests table in the DB and return the generated guestID
+        // Method to add a new guest
         public int addGuest(string name, int phone, string email)
         {
             int newGuestID = 0;
 
             try
             {
-                // Step 1: Find the biggest guestID in the Guests table
+                // Find the maximum guestID and increment it
                 string queryMaxID = "SELECT MAX(guestID) FROM Guests";
+                db2.FillDataSet(queryMaxID, "GuestsMaxID");
 
-                // Initialize the command to find the maximum guestID
-                command = new SqlCommand(queryMaxID, connection);
-
-                // Execute the query and get the result
-                object result = command.ExecuteScalar();
-
-                // If no guests are in the table (result is DBNull), start with guestID = 1
-                if (result != DBNull.Value)
+                if (db2.dsMain.Tables["GuestsMaxID"].Rows.Count > 0 && db2.dsMain.Tables["GuestsMaxID"].Rows[0][0] != DBNull.Value)
                 {
-                    newGuestID = Convert.ToInt32(result) + 1;
+                    newGuestID = Convert.ToInt32(db2.dsMain.Tables["GuestsMaxID"].Rows[0][0]) + 1;
                 }
                 else
                 {
-                    newGuestID = 1; // First guest if table is empty
+                    newGuestID = 1;
                 }
 
-                // Step 2: Insert the new guest into the Guests table
-                string insertQuery = "INSERT INTO Guests (guestID, name, phone, email) VALUES (@GuestID, @Name, @Phone, @Email)";
+                // Insert the new guest into the dataset
+                DataRow newRow = db2.dsMain.Tables["Guests"].NewRow();
+                newRow["guestID"] = newGuestID;
+                newRow["name"] = name;
+                newRow["phone"] = phone;
+                newRow["email"] = email;
+                db2.dsMain.Tables["Guests"].Rows.Add(newRow);
 
-                // Initialize the command for the insert operation
-                command = new SqlCommand(insertQuery, connection);
-
-                // Add parameters to avoid SQL injection
-                command.Parameters.AddWithValue("@GuestID", newGuestID);
-                command.Parameters.AddWithValue("@Name", name);
-                command.Parameters.AddWithValue("@Phone", phone);
-                command.Parameters.AddWithValue("@Email", email);
-
-                // Execute the insert query
-                command.ExecuteNonQuery();
+                // Update the data source
+                string insertQuery = "SELECT * FROM Guests"; // Use a query to refresh the dataset after insertion
+                db2.UpdateDataSource(insertQuery, "Guests");
             }
             catch (Exception ex)
             {
-                // Handle any exceptions (you could log it or throw the exception up to the caller)
                 Console.WriteLine("An error occurred while adding the guest: " + ex.Message);
             }
 
-            // Return the newly generated guestID
             return newGuestID;
         }
 
-        // A method to generate a reservationID, make a reservation object, reserve the rooms given, and return the reservation
+        // Method to make a reservation
         public int makeReservation(Reservation reservation)
         {
             int newReservationID = 0;
-            SqlTransaction transaction = null;
 
             try
             {
-                // Start a transaction to ensure all changes happen together
-                transaction = connection.BeginTransaction();
+                // Find the maximum reservationID and increment it
+                string queryMaxID = "SELECT ISNULL(MAX(reservationID), 0) FROM Reservations";
+                db2.FillDataSet(queryMaxID, "ReservationsMaxID");
 
-                // 1. Generate reservationID by finding the MAX(reservationID) in the Reservations table
-                string getMaxIDQuery = "SELECT ISNULL(MAX(reservationID), 0) FROM Reservations";
-                SqlCommand getMaxIDCommand = new SqlCommand(getMaxIDQuery, connection, transaction);
-                newReservationID = Convert.ToInt32(getMaxIDCommand.ExecuteScalar()) + 1;
+                if (db2.dsMain.Tables["ReservationsMaxID"].Rows.Count > 0)
+                {
+                    newReservationID = Convert.ToInt32(db2.dsMain.Tables["ReservationsMaxID"].Rows[0][0]) + 1;
+                }
 
-                // Set the reservationID of the provided reservation object
-                reservation.ReservationID = newReservationID;
+                // Insert the new reservation into the dataset
+                DataRow newRow = db2.dsMain.Tables["Reservations"].NewRow();
+                newRow["reservationID"] = newReservationID;
+                newRow["guestID"] = reservation.Guest.GuestID;
+                newRow["checkIn"] = reservation.CheckIn;
+                newRow["checkOut"] = reservation.CheckOut;
+                newRow["CostOfStay"] = reservation.CostOfStay;
+                db2.dsMain.Tables["Reservations"].Rows.Add(newRow);
 
-                // 2. Insert the new reservation row into the Reservations table
-                string insertReservationQuery = @"INSERT INTO Reservations (reservationID, guestID, checkIn, checkOut, CostOfStay) VALUES (@reservationID, @guestID, @checkIn, @checkOut, @costOfStay)";
-                SqlCommand insertReservationCommand = new SqlCommand(insertReservationQuery, connection, transaction);
-                insertReservationCommand.Parameters.AddWithValue("@reservationID", newReservationID);
-                insertReservationCommand.Parameters.AddWithValue("@guestID", reservation.Guest.GuestID);
-                insertReservationCommand.Parameters.AddWithValue("@checkIn", reservation.CheckIn);
-                insertReservationCommand.Parameters.AddWithValue("@checkOut", reservation.CheckOut);
-                insertReservationCommand.Parameters.AddWithValue("@costOfStay", reservation.CostOfStay);
-                insertReservationCommand.ExecuteNonQuery();
+                // Update the data source
+                string insertQuery = "SELECT * FROM Reservations";
+                db2.UpdateDataSource(insertQuery, "Reservations");
 
-                // 3. Add the bookings for each room to the Bookings table using the addToBookings() method
-                addToBookings(reservation.Rooms, newReservationID, transaction);
-
-                // Commit transaction if everything succeeded
-                transaction.Commit();
-                transaction.Dispose();
-                closeConnection();
+                // Add bookings for each room
+                addToBookings(reservation.Rooms, newReservationID);
             }
             catch (Exception ex)
             {
-                // Rollback transaction if any error occurred
-                transaction?.Rollback();
-                throw new Exception("An error occurred while making the reservation: " + ex.Message);
+                Console.WriteLine("An error occurred while making the reservation: " + ex.Message);
             }
 
-            return newReservationID; // Return the new reservationID
+            return newReservationID;
         }
 
-
-        // A method to add a booking to the Bookings table
-        public void addToBookings(Collection<Room> rooms, int newReservationID, SqlTransaction transaction)
+        // Method to add bookings
+        public void addToBookings(Collection<Room> rooms, int reservationID)
         {
             try
             {
-                // Generate the next bookingID by finding the MAX(bookingID) in the Bookings table
-                string getMaxBookingIDQuery = "SELECT ISNULL(MAX(bookingID), 0) FROM Bookings";
-                SqlCommand getMaxBookingIDCommand = new SqlCommand(getMaxBookingIDQuery, connection, transaction); // Pass the transaction
-                int nextBookingID = Convert.ToInt32(getMaxBookingIDCommand.ExecuteScalar()) + 1;
-
-                // For each room, insert a new row in the Bookings table
                 foreach (Room room in rooms)
                 {
-                    // Prepare the SQL query to insert the booking record
-                    string insertBookingQuery = "INSERT INTO Bookings (bookingID, reservationID, roomID) VALUES (@bookingID, @reservationID, @roomID)";
-                    SqlCommand insertBookingCommand = new SqlCommand(insertBookingQuery, connection, transaction); // Pass the transaction
+                    DataRow newRow = db2.dsMain.Tables["Bookings"].NewRow();
+                    newRow["bookingID"] = GetNextBookingID();
+                    newRow["reservationID"] = reservationID;
+                    newRow["roomID"] = room.RoomID;
+                    db2.dsMain.Tables["Bookings"].Rows.Add(newRow);
+                }
 
-                    // Set the parameters for bookingID, reservationID, and roomID
-                    insertBookingCommand.Parameters.AddWithValue("@bookingID", nextBookingID);
-                    insertBookingCommand.Parameters.AddWithValue("@reservationID", newReservationID);
-                    insertBookingCommand.Parameters.AddWithValue("@roomID", room.RoomID);
+                // Update the data source
+                string insertQuery = "SELECT * FROM Bookings";
+                db2.UpdateDataSource(insertQuery, "Bookings");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred while adding bookings: " + ex.Message);
+            }
+        }
 
-                    // Execute the query to insert the booking
-                    insertBookingCommand.ExecuteNonQuery();
+        // Method to get the next booking ID
+        private int GetNextBookingID()
+        {
+            int nextBookingID = 0;
 
-                    // Increment the bookingID for the next room
-                    nextBookingID++;
+            try
+            {
+                string queryMaxID = "SELECT ISNULL(MAX(bookingID), 0) FROM Bookings";
+                db2.FillDataSet(queryMaxID, "BookingsMaxID");
+
+                if (db2.dsMain.Tables["BookingsMaxID"].Rows.Count > 0)
+                {
+                    nextBookingID = Convert.ToInt32
+                    (nextBookingID = Convert.ToInt32(db2.dsMain.Tables["BookingsMaxID"].Rows[0][0]) + 1);
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while adding bookings: " + ex.Message);
+                Console.WriteLine("An error occurred while retrieving the next booking ID: " + ex.Message);
             }
-            
+
+            return nextBookingID;
         }
-
-        public void closeConnection()
-        {
-            if (connection != null && connection.State == System.Data.ConnectionState.Open)
-            {
-                connection.Close();
-            }
-        }
-
-
-
-        // Define a method to fetch all guests in the DB
-
-
-        // Define a method to fetch all rooms (this infor will be used by form to create rooms - ONLY when reservationID is null, room CAN be reserved)
-        // Define a method to update reservationID of a room if it becomes reserved
-
-
-        // Define a method to fetch all reservations made (Store the reservations in a collection on the form)
-
-        // Define method to add a reservation (first create a reservation object and then store it when done)
-
-        // Define a method to modify a reservation (first modfy the reservation as an object - and use its details to Update)
 
         #endregion
     }

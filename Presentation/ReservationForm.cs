@@ -45,10 +45,10 @@ namespace BookingSystem.Presentation
             InitializeComponent();
             rooms = new Collection<Room>();
 
-            standard = new Room(1, 1, 1, Room.RoomType.Standard);
-            studio = new Room(2, 1, 1, Room.RoomType.Studio);
-            executive = new Room(3, 1, 1, Room.RoomType.Executive);
-            apartment = new Room(4, 1, 1, Room.RoomType.OneBedroomApartment);
+            standard = new Room(1, 1, Room.RoomType.Standard);
+            studio = new Room(2, 1, Room.RoomType.Studio);
+            executive = new Room(3, 1, Room.RoomType.Executive);
+            apartment = new Room(4, 1, Room.RoomType.OneBedroomApartment);
         }
 
         private void SetRoomVisibility(Room.RoomType roomType, bool value)
