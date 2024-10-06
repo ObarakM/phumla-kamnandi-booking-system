@@ -265,6 +265,8 @@ namespace BookingSystem.Data
 
                 // Commit transaction if everything succeeded
                 transaction.Commit();
+                transaction.Dispose();
+                closeConnection();
             }
             catch (Exception ex)
             {
@@ -310,9 +312,10 @@ namespace BookingSystem.Data
             {
                 throw new Exception("An error occurred while adding bookings: " + ex.Message);
             }
+            
         }
 
-        public void CloseConnection()
+        public void closeConnection()
         {
             if (connection != null && connection.State == System.Data.ConnectionState.Open)
             {
