@@ -177,6 +177,17 @@ namespace BookingSystem.Data
         // Method to make a reservation
         public int makeReservation(Reservation reservation)
         {
+
+            if (reservation.Guest == null)
+            {
+                throw new ArgumentNullException("Guest cannot be null in the reservation.");
+            }
+            if (reservation.Rooms == null || reservation.Rooms.Count == 0)
+            {
+                throw new ArgumentException("At least one room must be associated with the reservation.");
+            }
+
+
             int newReservationID = 0;
 
             try

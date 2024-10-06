@@ -393,5 +393,25 @@ namespace BookingSystem.Presentation
         {
 
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            button6_Click(sender, e);
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            button2_Click(sender, e);
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            button3_Click(sender, e);
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            button4_Click(sender, e);
+        }
     }
 }

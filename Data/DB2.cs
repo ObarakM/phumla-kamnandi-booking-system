@@ -42,12 +42,17 @@ namespace BookingSystem.Data
         #region Update the DateSet
         public void FillDataSet(string aSQLstring, string aTable)
         {
-            //fills dataset fresh from the db for a specific table and with a specific Query
             try
             {
                 daMain = new SqlDataAdapter(aSQLstring, cnMain);
                 cnMain.Open();
-                dsMain.Clear();
+
+                // Only clear the specific table if it exists, otherwise the dataset is left intact
+                if (dsMain.Tables.Contains(aTable))
+                {
+                    dsMain.Tables[aTable].Clear();
+                }
+
                 daMain.Fill(dsMain, aTable);
                 cnMain.Close();
             }
