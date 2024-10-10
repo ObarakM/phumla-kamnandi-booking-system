@@ -51,6 +51,7 @@ namespace BookingSystem.Presentation
             studio = new Room(2, 1, 1, Room.RoomType.Studio);
             executive = new Room(3, 1, 1, Room.RoomType.Executive);
             apartment = new Room(4, 1, 1, Room.RoomType.OneBedroomApartment);
+            showRooms(false);
         }
 
         private void SetRoomVisibility(Room.RoomType roomType, bool value)
@@ -159,8 +160,8 @@ namespace BookingSystem.Presentation
         private void Form2_Load(object sender, EventArgs e)
         {
             //this.WindowState = FormWindowState.Maximized;
-            reservationForm = this;
-            showRooms(false);
+            reservationForm = new ReservationForm();
+           
 
             this.WindowState = FormWindowState.Maximized;
             finishBookingButton.Visible = false;
@@ -194,7 +195,7 @@ namespace BookingSystem.Presentation
             // Ensure selectedStandard is not negative and there are enough rooms
             if (selectedStandard > 0)
             {
-                Collection<Room> temp = db.getFreeRoomsByType(Room.RoomType.Standard, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date); // Define temp here
+                Collection<Room> temp = db.getFreeRoomsByType(Room.RoomType.Standard, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date);
                 for (int i = 0; i < Math.Min(selectedStandard, temp.Count); i++)
                 {
                     rooms.Add(temp[0]);
@@ -208,7 +209,7 @@ namespace BookingSystem.Presentation
 
             if (selectedStudio > 0)
             {
-                Collection<Room> temp = db.getFreeRoomsByType(Room.RoomType.Studio, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date); // Define temp here
+                Collection<Room> temp = db.getFreeRoomsByType(Room.RoomType.Studio, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date);
                 for (int i = 0; i < Math.Min(selectedStudio, temp.Count); i++)
                 {
                     rooms.Add(temp[0]);
@@ -222,7 +223,7 @@ namespace BookingSystem.Presentation
 
             if (selectedExecutive > 0)
             {
-                Collection<Room> temp = db.getFreeRoomsByType(Room.RoomType.Executive, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date); // Define temp here
+                Collection<Room> temp = db.getFreeRoomsByType(Room.RoomType.Executive, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date);
                 for (int i = 0; i < Math.Min(selectedExecutive, temp.Count); i++)
                 {
                     rooms.Add(temp[0]);
@@ -236,7 +237,7 @@ namespace BookingSystem.Presentation
 
             if (selectedApartment > 0)
             {
-                Collection<Room> temp = db.getFreeRoomsByType(Room.RoomType.OneBedroomApartment, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date); // Define temp here
+                Collection<Room> temp = db.getFreeRoomsByType(Room.RoomType.OneBedroomApartment, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date);
                 for (int i = 0; i < Math.Min(selectedApartment, temp.Count); i++)
                 {
                     rooms.Add(temp[0]);
@@ -247,14 +248,20 @@ namespace BookingSystem.Presentation
             // Check if sufficient rooms have been selected
             if (sufficientRooms())
             {
-                PhumlaKamnandiHotelForm.bookingsForm.Show();
-                this.Hide();
+                // Check if BookingsForm is disposed before showing it
+                if (PhumlaKamnandiHotelForm.bookingsForm == null || PhumlaKamnandiHotelForm.bookingsForm.IsDisposed)
+                {
+                    PhumlaKamnandiHotelForm.bookingsForm = new BookingsForm(); // Recreate the form if disposed
+                }
+                PhumlaKamnandiHotelForm.bookingsForm.Show(); // Show BookingsForm
+                this.Hide(); // Hide ReservationForm
             }
             else
             {
                 MessageBox.Show("Please select more rooms to accommodate all guests!");
             }
         }
+
 
 
         private void button6_Click(object sender, EventArgs e)

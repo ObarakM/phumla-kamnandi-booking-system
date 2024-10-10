@@ -46,27 +46,6 @@ namespace BookingSystem.Presentation
             this.Hide();
         }
 
-        // Declare the ToolTip at the form level
-        ToolTip toolTip1 = new ToolTip();
-
-        private void reservationButton_MouseEnter(object sender, EventArgs e)
-        {
-            // Change the background color when mouse enters
-            reservationButton.BackColor = Color.LightBlue;
-
-            // Show a tooltip when hovering over the button
-            toolTip1.Show("This is a tooltip!", reservationButton);
-        }
-
-        private void reservationButton_MouseLeave(object sender, EventArgs e)
-        {
-            // Change the background color back when the mouse leaves
-            reservationButton.BackColor = SystemColors.Control;
-
-            // Hide the tooltip when the mouse leaves
-            toolTip1.Hide(reservationButton);
-        }
-
 
         private void bookingsButton_Click(object sender, EventArgs e)
         {
