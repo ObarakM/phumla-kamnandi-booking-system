@@ -250,7 +250,7 @@
             this.button3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.button3.Location = new System.Drawing.Point(230, 12);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(147, 82);
+            this.button3.Size = new System.Drawing.Size(147, 94);
             this.button3.TabIndex = 46;
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
@@ -320,6 +320,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::BookingSystem.Properties.Resources.pexels_soulful_pizza_2080276_3914755__1_1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1924, 1061);
             this.Controls.Add(this.button3);

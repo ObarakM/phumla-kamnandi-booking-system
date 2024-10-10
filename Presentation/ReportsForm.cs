@@ -22,5 +22,10 @@ namespace BookingSystem.Presentation
             PhumlaKamnandiHotelForm.phumlaKamnandi.Show();
             this.Close();
         }
+
+        private void ReportsForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

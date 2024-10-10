@@ -49,6 +49,7 @@ namespace BookingSystem.Presentation
             studio = new Room(2, 1, Room.RoomType.Studio);
             executive = new Room(3, 1, Room.RoomType.Executive);
             apartment = new Room(4, 1, Room.RoomType.OneBedroomApartment);
+            showRooms(false);
         }
 
         private void SetRoomVisibility(Room.RoomType roomType, bool value)
@@ -158,7 +159,7 @@ namespace BookingSystem.Presentation
         {
             this.WindowState = FormWindowState.Maximized;
             reservationForm = this;    
-            showRooms(false);
+            //showRooms(false);
 
 
             finishBookingButton.Visible = false;
@@ -222,9 +223,13 @@ namespace BookingSystem.Presentation
 
             if (sufficientRooms())
             {
-                PhumlaKamnandiHotelForm.bookingsForm.Show();
-                //bookingForm.Show();
-                this.Hide();
+                // Check if BookingsForm is disposed before showing it
+                if (PhumlaKamnandiHotelForm.bookingsForm == null || PhumlaKamnandiHotelForm.bookingsForm.IsDisposed)
+                {
+                    PhumlaKamnandiHotelForm.bookingsForm = new BookingsForm(); // Recreate the form if disposed
+                }
+                PhumlaKamnandiHotelForm.bookingsForm.Show(); // Show BookingsForm
+                this.Hide(); // Hide ReservationForm
             }
             else
             {

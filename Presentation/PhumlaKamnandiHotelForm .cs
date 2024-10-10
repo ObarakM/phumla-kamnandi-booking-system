@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace BookingSystem.Presentation
 {
-    public partial class PhumlaKamnandiHotelForm  : Form
+    public partial class PhumlaKamnandiHotelForm : Form
     {
         public static PhumlaKamnandiHotelForm phumlaKamnandi;
         public static BookingsForm bookingsForm;
         public PhumlaKamnandiHotelForm()
         {
             InitializeComponent();
-            
+
         }
 
         private void header_Click(object sender, EventArgs e)
@@ -35,7 +35,7 @@ namespace BookingSystem.Presentation
         private void Form1_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-            phumlaKamnandi = new PhumlaKamnandiHotelForm();
+            phumlaKamnandi = this;
             bookingsForm = new BookingsForm();
         }
 
@@ -45,6 +45,7 @@ namespace BookingSystem.Presentation
             reservationForm.Show();
             this.Hide();
         }
+
 
         private void bookingsButton_Click(object sender, EventArgs e)
         {

@@ -28,23 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.expiryDateTextBox = new System.Windows.Forms.TextBox();
             this.cardNumberTextBox = new System.Windows.Forms.TextBox();
             this.expiryDateLabel = new System.Windows.Forms.Label();
             this.cardNumberLabel = new System.Windows.Forms.Label();
             this.securityCodeTextBox = new System.Windows.Forms.TextBox();
             this.securityCodeLabel = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
             this.header = new System.Windows.Forms.Label();
             this.makePaymentButton = new System.Windows.Forms.Button();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
-            // 
-            // expiryDateTextBox
-            // 
-            this.expiryDateTextBox.Location = new System.Drawing.Point(630, 237);
-            this.expiryDateTextBox.Name = "expiryDateTextBox";
-            this.expiryDateTextBox.Size = new System.Drawing.Size(332, 20);
-            this.expiryDateTextBox.TabIndex = 25;
             // 
             // cardNumberTextBox
             // 
@@ -96,17 +88,6 @@
             this.securityCodeLabel.TabIndex = 26;
             this.securityCodeLabel.Text = "Security Code";
             // 
-            // button3
-            // 
-            this.button3.BackgroundImage = global::BookingSystem.Properties.Resources.castle_4931672;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button3.Location = new System.Drawing.Point(33, 22);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(147, 82);
-            this.button3.TabIndex = 48;
-            this.button3.UseVisualStyleBackColor = true;
-            // 
             // header
             // 
             this.header.AllowDrop = true;
@@ -137,17 +118,26 @@
             this.makePaymentButton.UseVisualStyleBackColor = false;
             this.makePaymentButton.Click += new System.EventHandler(this.makePaymentButton_Click);
             // 
+            // dateTimePicker
+            // 
+            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker.Location = new System.Drawing.Point(630, 236);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.Size = new System.Drawing.Size(332, 20);
+            this.dateTimePicker.TabIndex = 53;
+            // 
             // AccountDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::BookingSystem.Properties.Resources.pexels_soulful_pizza_2080276_3914755__1_1;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1531, 405);
+            this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.makePaymentButton);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.header);
             this.Controls.Add(this.securityCodeTextBox);
             this.Controls.Add(this.securityCodeLabel);
-            this.Controls.Add(this.expiryDateTextBox);
             this.Controls.Add(this.cardNumberTextBox);
             this.Controls.Add(this.expiryDateLabel);
             this.Controls.Add(this.cardNumberLabel);
@@ -160,15 +150,13 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox expiryDateTextBox;
         private System.Windows.Forms.TextBox cardNumberTextBox;
         private System.Windows.Forms.Label expiryDateLabel;
         private System.Windows.Forms.Label cardNumberLabel;
         private System.Windows.Forms.TextBox securityCodeTextBox;
         private System.Windows.Forms.Label securityCodeLabel;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label header;
         private System.Windows.Forms.Button makePaymentButton;
+        private System.Windows.Forms.DateTimePicker dateTimePicker;
     }
 }

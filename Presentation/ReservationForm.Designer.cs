@@ -76,7 +76,7 @@
             this.header.Font = new System.Drawing.Font("Lucida Calligraphy", 56.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.header.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.header.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.header.Location = new System.Drawing.Point(261, 9);
+            this.header.Location = new System.Drawing.Point(464, 9);
             this.header.Name = "header";
             this.header.Size = new System.Drawing.Size(1356, 97);
             this.header.TabIndex = 1;
@@ -397,6 +397,7 @@
             // button3
             // 
             this.button3.BackgroundImage = global::BookingSystem.Properties.Resources.castle_4931672;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.button3.Location = new System.Drawing.Point(95, 24);
             this.button3.Name = "button3";
@@ -411,8 +412,9 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackgroundImage = global::BookingSystem.Properties.Resources.pexels_soulful_pizza_2080276_3914755__1_1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.ClientSize = new System.Drawing.Size(1387, 766);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.reservationListView);
             this.Controls.Add(this.finishBookingButton);
