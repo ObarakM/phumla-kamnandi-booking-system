@@ -24,7 +24,11 @@ namespace BookingSystem.Presentation
         public BookingsForm()
         {
             InitializeComponent();
-            
+            showFormInfo(false);
+            idLabel.Visible = false;
+            idTextBox.Visible = false;
+            searchButton.Visible = false;
+
         }
         #region
         // testing for message box
@@ -35,7 +39,7 @@ namespace BookingSystem.Presentation
         public void showFormInfo(bool value)
         {
             nameLabel.Visible = value;
-            phoneLabel.Visible = value; 
+            phoneLabel.Visible = value;
             emailLabel.Visible = value;
             nameTextBox.Visible = value;
             phoneTextBox.Visible = value;
@@ -54,10 +58,10 @@ namespace BookingSystem.Presentation
             this.WindowState = FormWindowState.Maximized;
             reservationForm = ReservationForm.reservationForm;
             bookingform = new BookingsForm();
-            showFormInfo(false);
-            idLabel.Visible = false;
-            idTextBox.Visible = false;
-            searchButton.Visible = false;
+            //showFormInfo(false);
+            //idLabel.Visible = false;
+            //idTextBox.Visible = false;
+            //searchButton.Visible = false;
 
         }
 
@@ -69,12 +73,19 @@ namespace BookingSystem.Presentation
             emailTextBox.Clear();
         }
 
+
         private void button1_Click(object sender, EventArgs e)
         {
 
             if (newGuestRadioButton1.Checked)
             {
-                idTextBox.Text = db.addGuest(nameTextBox.Text,int.Parse(phoneTextBox.Text),emailTextBox.Text).ToString();
+                idTextBox.Text = db.addGuest(nameTextBox.Text, int.Parse(phoneTextBox.Text), emailTextBox.Text).ToString();
+                MessageBox.Show("Guest with ID: " + idTextBox.Text + " successfully created.");
+                clearTextBoxes();
+                newGuestRadioButton1.Checked = false;
+                showFormInfo(false);
+
+
             }
             if (existingGuestRadioButton2.Checked)
             {
@@ -89,6 +100,9 @@ namespace BookingSystem.Presentation
 
                     int reference = db.makeReservation(reservation);
                     MessageBox.Show("Reservation complete and the reference number is: " + reference);
+                    clearTextBoxes();
+                    existingGuestRadioButton2.Checked = false;
+                    showSearchInfo(false);
                 }
                 else
                 {
@@ -98,8 +112,7 @@ namespace BookingSystem.Presentation
 
 
             }
-            //guest = new Guest(int.Parse(idTextBox.Text),nameTextBox.Text,int.Parse(phoneTextBox.Text),emailTextBox.Text);
-            //reservation = new Reservation(guest, reservationForm.getRooms(),reservationForm.getCheckIn(),reservationForm.getCheckOut(), reservationForm.getCostOfStay());
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -129,7 +142,7 @@ namespace BookingSystem.Presentation
         private void searchButton_Click(object sender, EventArgs e)
         {
             currentGuest = db.findGuest(int.Parse(idTextBox.Text));
-            if (currentGuest != null) 
+            if (currentGuest != null)
             {
                 showFormInfo(true);
                 searchButton.Visible = false;
