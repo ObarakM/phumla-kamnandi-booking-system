@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BookingSystem.Business;
+using BookingSystem.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace BookingSystem.Presentation
 {
     public partial class BookingListing : Form
@@ -15,7 +18,9 @@ namespace BookingSystem.Presentation
         public BookingListing()
         {
             InitializeComponent();
+            showAll(false);
         }
+        private DB db = new DB();
 
         public void showAll(bool value)
         {
@@ -40,13 +45,33 @@ namespace BookingSystem.Presentation
             checkOutTextBox.Visible = value;
             costOfStayTextBox.Visible = value;
 
+        }
 
+        // clear all text boxes
+        private void clearAll()
+        {
+            reservationIDTextBox.Text = "";
+            guestIDTextBox.Text = "";
+            nameTextBox.Text = "";
+            phoneTextBox.Text = "";
+            emailTextBox.Text = "";
+            checkInTextBox.Text = "";
+            checkOutTextBox.Text = "";
+            costOfStayTextBox.Text = "";
+        }
 
+        private void populateTextBoxes(int guestID, string guestName, int phone, string email)
+        {
+            guestIDTextBox.Text = guestID.ToString();
+            nameTextBox.Text = guestName;
+            phoneTextBox.Text = phone.ToString();
+            emailTextBox.Text = email.ToString();
         }
         private void BookingListing_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-            showAll(false);
+
+            bookingsListView.GridLines = true;
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -68,6 +93,38 @@ namespace BookingSystem.Presentation
         {
             //PhumlaKamnandiHotelForm kamnandiHotelForm = new PhumlaKamnandiHotelForm();
             //kamnandiHotelForm.Show();
+            PhumlaKamnandiHotelForm.phumlaKamnandi.Show();
+            this.Close();
+        }
+
+
+        private void bookingsListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if (bookingsListView.SelectedItems.Count > 0)
+            {
+                //get the selected guest and their reservation using their id
+
+                Guest selectedGuest = db.findGuest(int.Parse(bookingsListView.SelectedItems[0].Text));
+                populateTextBoxes(selectedGuest.GuestID, selectedGuest.Name, selectedGuest.Phone, selectedGuest.Email);
+                showAll(true);
+            }
+        }
+
+        private void submitButton_Click(object sender, EventArgs e)
+        {
+            clearAll();
+            showAll(false);
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            clearAll();
+            showAll(false);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
             PhumlaKamnandiHotelForm.phumlaKamnandi.Show();
             this.Close();
         }
