@@ -3,9 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static BookingSystem.Business.Room;
 
 namespace BookingSystem.Data
@@ -154,17 +157,11 @@ namespace BookingSystem.Data
                     newGuestID = 1;
                 }
 
-                // Insert the new guest into the dataset
-                DataRow newRow = db2.dsMain.Tables["Guests"].NewRow();
-                newRow["guestID"] = newGuestID;
-                newRow["name"] = name;
-                newRow["phone"] = phone;
-                newRow["email"] = email;
-                db2.dsMain.Tables["Guests"].Rows.Add(newRow);
-
-                // Update the data source
-                string insertQuery = "SELECT * FROM Guests"; // Use a query to refresh the dataset after insertion
-                db2.UpdateDataSource(insertQuery, "Guests");
+                // Directly insert the new guest into the database
+                string insertGuestQuery = @"INSERT INTO Guests (guestID, name, phone, email)
+                                    VALUES (" + newGuestID + ", '" + name + "', " + phone + ", '" + email + "')";
+                int rows = db2.ExecuteNonQuery(insertGuestQuery);  // This method will directly execute the SQL command
+                MessageBox.Show("Numer of rows logged: " + rows);
             }
             catch (Exception ex)
             {
@@ -187,7 +184,6 @@ namespace BookingSystem.Data
                 throw new ArgumentException("At least one room must be associated with the reservation.");
             }
 
-
             int newReservationID = 0;
 
             try
@@ -201,18 +197,23 @@ namespace BookingSystem.Data
                     newReservationID = Convert.ToInt32(db2.dsMain.Tables["ReservationsMaxID"].Rows[0][0]) + 1;
                 }
 
-                // Insert the new reservation into the dataset
-                DataRow newRow = db2.dsMain.Tables["Reservations"].NewRow();
-                newRow["reservationID"] = newReservationID;
-                newRow["guestID"] = reservation.Guest.GuestID;
-                newRow["checkIn"] = reservation.CheckIn;
-                newRow["checkOut"] = reservation.CheckOut;
-                newRow["CostOfStay"] = reservation.CostOfStay;
-                db2.dsMain.Tables["Reservations"].Rows.Add(newRow);
+                // Directly insert the new reservation into the database
+                string insertReservationQuery = "INSERT INTO Reservations (reservationID, guestID, CheckIn, CheckOut, CostOfStay) VALUES (@reservationID, @guestID, @checkIn, @checkOut, @costOfStay)";
 
-                // Update the data source
-                string insertQuery = "SELECT * FROM Reservations";
-                db2.UpdateDataSource(insertQuery, "Reservations");
+                using (SqlCommand cmd = new SqlCommand(insertReservationQuery, db2.cnMain))
+                {
+                    cmd.Parameters.AddWithValue("@reservationID", newReservationID);
+                    cmd.Parameters.AddWithValue("@guestID", reservation.Guest.GuestID);
+                    cmd.Parameters.AddWithValue("@checkIn", reservation.CheckIn.ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@checkOut", reservation.CheckOut.ToString("yyyy-MM-dd"));
+                    cmd.Parameters.AddWithValue("@costOfStay", reservation.CostOfStay);
+
+                    db2.cnMain.Open();
+                    int rows = cmd.ExecuteNonQuery();
+                    MessageBox.Show("Number of reservations added: " + rows);
+                    db2.cnMain.Close();
+                }
+
 
                 // Add bookings for each room
                 addToBookings(reservation.Rooms, newReservationID);
@@ -230,18 +231,30 @@ namespace BookingSystem.Data
         {
             try
             {
+                int rows = 0;
                 foreach (Room room in rooms)
                 {
-                    DataRow newRow = db2.dsMain.Tables["Bookings"].NewRow();
-                    newRow["bookingID"] = GetNextBookingID();
-                    newRow["reservationID"] = reservationID;
-                    newRow["roomID"] = room.RoomID;
-                    db2.dsMain.Tables["Bookings"].Rows.Add(newRow);
+                    string insertBookingQuery = "INSERT INTO Bookings (bookingID, reservationID, roomID) VALUES (@bookingID, @reservationID, @roomID)";
+
+                    using (SqlCommand cmd = new SqlCommand(insertBookingQuery, db2.cnMain))
+                    {
+                        // Generate the next booking ID
+                        int newBookingID = GetNextBookingID();
+
+                        // Add the parameters
+                        cmd.Parameters.AddWithValue("@bookingID", newBookingID);
+                        cmd.Parameters.AddWithValue("@reservationID", reservationID);
+                        cmd.Parameters.AddWithValue("@roomID", room.RoomID);
+
+                        // Execute the query
+                        db2.cnMain.Open();
+                        int row = cmd.ExecuteNonQuery();
+                        rows += row;
+                        db2.cnMain.Close();
+                    }
                 }
 
-                // Update the data source
-                string insertQuery = "SELECT * FROM Bookings";
-                db2.UpdateDataSource(insertQuery, "Bookings");
+                MessageBox.Show("Number of bookings added: " + rows);
             }
             catch (Exception ex)
             {

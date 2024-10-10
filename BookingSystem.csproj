@@ -164,11 +164,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BookingDatabase.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="BookingDatabase.mdf" />
     <Content Include="BookingDatabase_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>BookingDatabase.mdf</DependentUpon>
     </Content>
     <Content Include="Images\Apartment.jpg" />

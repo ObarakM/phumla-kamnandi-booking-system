@@ -45,6 +45,10 @@ namespace BookingSystem.Data
             try
             {
                 daMain = new SqlDataAdapter(aSQLstring, cnMain);
+
+                // Use SqlCommandBuilder to automatically generate InsertCommand, UpdateCommand, and DeleteCommand
+                SqlCommandBuilder cmdBuilder = new SqlCommandBuilder(daMain);
+
                 cnMain.Open();
 
                 // Only clear the specific table if it exists, otherwise the dataset is left intact
@@ -62,6 +66,7 @@ namespace BookingSystem.Data
             }
         }
 
+
         #endregion
 
         #region Update the data source 
@@ -72,11 +77,17 @@ namespace BookingSystem.Data
             {
                 //open the connection
                 cnMain.Open();
-                //***update the database table via the data adapter
+
+                // Generate the InsertCommand, UpdateCommand, and DeleteCommand
+                SqlCommandBuilder cmdBuilder = new SqlCommandBuilder(daMain);
+
+                // Update the database table via the data adapter
                 daMain.Update(dsMain, table);
-                //---close the connection
+
+                // Close the connection
                 cnMain.Close();
-                //refresh the dataset
+
+                // Refresh the dataset
                 FillDataSet(sqlLocal, table);
                 success = true;
             }
@@ -89,6 +100,43 @@ namespace BookingSystem.Data
             {
             }
             return success;
+        }
+        #endregion
+
+        #region Exceute Non Queries
+        // New ExecuteNonQuery method to execute INSERT, UPDATE, DELETE commands
+        public int ExecuteNonQuery(string sql)
+        {
+            int affectedRows = 0;
+
+            try
+            {
+                // Open the connection if it's not open
+                if (cnMain.State != ConnectionState.Open)
+                {
+                    cnMain.Open();
+                }
+
+                // Create a new SQL command
+                SqlCommand cmd = new SqlCommand(sql, cnMain);
+
+                // Execute the command
+                affectedRows = cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred while executing the query: " + ex.Message);
+            }
+            finally
+            {
+                // Close the connection after execution
+                if (cnMain.State == ConnectionState.Open)
+                {
+                    cnMain.Close();
+                }
+            }
+
+            return affectedRows;
         }
         #endregion
     }
