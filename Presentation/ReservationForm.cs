@@ -34,9 +34,6 @@ namespace BookingSystem.Presentation
         private int selectableStudio = 0;
         private int selectableExecutive = 0;
         private int selectableApartment = 0;
-
-        private DateTime checkIn;
-        private DateTime checkOut;
         #endregion
 
         public ReservationForm()
@@ -44,6 +41,11 @@ namespace BookingSystem.Presentation
 
             InitializeComponent();
             rooms = new Collection<Room>();
+            // available rooms from the database
+            selectableStandard = db.getFreeRoomsCount(Room.RoomType.Standard,dateTimePicker1.Value.Date,dateTimePicker2.Value.Date);
+            selectableExecutive = db.getFreeRoomsCount(Room.RoomType.Executive,dateTimePicker1.Value.Date, dateTimePicker2.Value.Date);
+            selectableStudio = db.getFreeRoomsCount(Room.RoomType.Studio, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date);
+            selectableApartment = db.getFreeRoomsCount(Room.RoomType.OneBedroomApartment,dateTimePicker1.Value.Date, dateTimePicker2.Value.Date);
 
             standard = new Room(1, 1, 1, Room.RoomType.Standard);
             studio = new Room(2, 1, 1, Room.RoomType.Studio);
@@ -81,14 +83,14 @@ namespace BookingSystem.Presentation
 
         private void showRooms(bool value)
         {
-            if (adults==0 ) { // assuming children cannot be in the hotel without an adult
+            if (adults == 0)
+            { // assuming children cannot be in the hotel without an adult
                 value = false;
             }
-            
             for (int i = 0; i < 4; i++) // check if rooms are available
             {
                 // Check if rooms are available AND if 'value' (based on adults) is true
-                if (value && db.getFreeRoomsCount((Room.RoomType)i, checkIn, checkOut) != 0)
+                if (db.getFreeRoomsCount((Room.RoomType)i, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date) != 0 && value)
                 {
                     SetRoomVisibility((Room.RoomType)i, true);
                 }
@@ -106,7 +108,7 @@ namespace BookingSystem.Presentation
         {
             foreach (Room room in rooms)
             {
-                costOfStay += (room.DailyRate*adults+(room.DailyRate/2)*children);
+                costOfStay += (room.DailyRate * adults + (room.DailyRate / 2) * children);
             }
         }
 
@@ -156,11 +158,11 @@ namespace BookingSystem.Presentation
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
-            reservationForm = this;    
+            //this.WindowState = FormWindowState.Maximized;
+            reservationForm = this;
             showRooms(false);
 
-
+            this.WindowState = FormWindowState.Maximized;
             finishBookingButton.Visible = false;
             reservationListView.Visible = false;
             reservationListView.View = View.Details; // set list view to view details
@@ -185,52 +187,75 @@ namespace BookingSystem.Presentation
 
         private void button5_Click(object sender, EventArgs e)
         {
-            
+            // Fetch Standard Rooms
+            int availableStandardRooms = db.getFreeRoomsCount(Room.RoomType.Standard, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date);
+            int selectedStandard = availableStandardRooms - selectableStandard;
 
-                int selectedStandard = db.getFreeRoomsCount(Room.RoomType.Standard, checkIn, checkOut)-selectableStandard;
-                Collection<Room> temp = db.getFreeRoomsByType(Room.RoomType.Standard, checkIn, checkOut);
-                for (int i = 0; i < selectedStandard; i++)
+            // Ensure selectedStandard is not negative and there are enough rooms
+            if (selectedStandard > 0)
+            {
+                Collection<Room> temp = db.getFreeRoomsByType(Room.RoomType.Standard, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date); // Define temp here
+                for (int i = 0; i < Math.Min(selectedStandard, temp.Count); i++)
                 {
                     rooms.Add(temp[0]);
                     temp.RemoveAt(0);
                 }
-                
-                int selectedStudio = db.getFreeRoomsCount(Room.RoomType.Studio, checkIn, checkOut)-selectableStudio;
-                temp = db.getFreeRoomsByType(Room.RoomType.Studio, checkIn, checkOut);
-                for (int i = 0; i < selectedStudio; i++)
-                {
-                    rooms.Add(temp[0]);
-                    temp.RemoveAt(0);
-                }
-                                
-                int selectedExecutive = db.getFreeRoomsCount(Room.RoomType.Executive, checkIn, checkOut)-selectableExecutive;
-                temp = db.getFreeRoomsByType(Room.RoomType.Executive, checkIn, checkOut);
-                for (int i = 0; i < selectedExecutive; i++)
-                {
-                    rooms.Add(temp[0]);
-                    temp.RemoveAt(0);
-                }
-                                
-                int selectedApartment = db.getFreeRoomsCount(Room.RoomType.OneBedroomApartment, checkIn, checkOut)-selectableApartment;
-                temp = db.getFreeRoomsByType(Room.RoomType.OneBedroomApartment, checkIn, checkOut);
-                for (int i = 0; i < selectedApartment; i++)
-                {
-                    rooms.Add(temp[0]);
-                    temp.RemoveAt(0);
-                }
+            }
 
+            // Fetch Studio Rooms
+            int availableStudioRooms = db.getFreeRoomsCount(Room.RoomType.Studio, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date);
+            int selectedStudio = availableStudioRooms - selectableStudio;
 
+            if (selectedStudio > 0)
+            {
+                Collection<Room> temp = db.getFreeRoomsByType(Room.RoomType.Studio, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date); // Define temp here
+                for (int i = 0; i < Math.Min(selectedStudio, temp.Count); i++)
+                {
+                    rooms.Add(temp[0]);
+                    temp.RemoveAt(0);
+                }
+            }
+
+            // Fetch Executive Rooms
+            int availableExecutiveRooms = db.getFreeRoomsCount(Room.RoomType.Executive, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date);
+            int selectedExecutive = availableExecutiveRooms - selectableExecutive;
+
+            if (selectedExecutive > 0)
+            {
+                Collection<Room> temp = db.getFreeRoomsByType(Room.RoomType.Executive, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date); // Define temp here
+                for (int i = 0; i < Math.Min(selectedExecutive, temp.Count); i++)
+                {
+                    rooms.Add(temp[0]);
+                    temp.RemoveAt(0);
+                }
+            }
+
+            // Fetch One Bedroom Apartment Rooms
+            int availableApartmentRooms = db.getFreeRoomsCount(Room.RoomType.OneBedroomApartment, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date);
+            int selectedApartment = availableApartmentRooms - selectableApartment;
+
+            if (selectedApartment > 0)
+            {
+                Collection<Room> temp = db.getFreeRoomsByType(Room.RoomType.OneBedroomApartment, dateTimePicker1.Value.Date, dateTimePicker2.Value.Date); // Define temp here
+                for (int i = 0; i < Math.Min(selectedApartment, temp.Count); i++)
+                {
+                    rooms.Add(temp[0]);
+                    temp.RemoveAt(0);
+                }
+            }
+
+            // Check if sufficient rooms have been selected
             if (sufficientRooms())
             {
                 PhumlaKamnandiHotelForm.bookingsForm.Show();
-                //bookingForm.Show();
                 this.Hide();
             }
             else
             {
-                MessageBox.Show("Please select more rooms to accomodate all guests!");
+                MessageBox.Show("Please select more rooms to accommodate all guests!");
             }
         }
+
 
         private void button6_Click(object sender, EventArgs e)
         {
@@ -241,21 +266,21 @@ namespace BookingSystem.Presentation
             item.SubItems.Add(standard.DailyRate.ToString());
             reservationListView.Items.Add(item);
             //set the list view and finish booking button visibility to true
-            finishBookingButton.Visible=true;
-            reservationListView.Visible=true;
+            finishBookingButton.Visible = true;
+            reservationListView.Visible = true;
 
             selectableStandard--;
             if (selectableStandard == 0)
             {
-                pictureBox1.Visible=false;
-                roomDescription1.Visible=false;
-                select1.Visible=false;
+                pictureBox1.Visible = false;
+                roomDescription1.Visible = false;
+                select1.Visible = false;
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+
 
             // add items to the list view
             ListViewItem item = new ListViewItem(studio.getRoomType.ToString());
@@ -277,7 +302,7 @@ namespace BookingSystem.Presentation
 
         private void button3_Click(object sender, EventArgs e)
         {
-           
+
             // add items to the list view
             ListViewItem item = new ListViewItem(executive.getRoomType.ToString());
             item.SubItems.Add(2.ToString());
@@ -297,7 +322,7 @@ namespace BookingSystem.Presentation
 
         private void button4_Click(object sender, EventArgs e)
         {
-            
+
 
             // add items to the list view
             ListViewItem item = new ListViewItem(apartment.getRoomType.ToString());
@@ -323,16 +348,6 @@ namespace BookingSystem.Presentation
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Capture the cheking dates
-            checkIn = dateTimePicker1.Value;
-            checkOut = dateTimePicker2.Value;
-
-            // initialise selactable counts correctly
-            selectableStandard = db.getFreeRoomsCount(Room.RoomType.Standard, checkIn, checkOut);
-            selectableExecutive = db.getFreeRoomsCount(Room.RoomType.Executive, checkIn, checkOut);
-            selectableStudio = db.getFreeRoomsCount(Room.RoomType.Studio, checkIn, checkOut);
-            selectableApartment = db.getFreeRoomsCount(Room.RoomType.OneBedroomApartment, checkIn, checkOut);
-
             roomDescription1.Text = standard.getDescription();
             roomDescription2.Text = studio.getDescription();
             roomDescription3.Text = executive.getDescription();
@@ -369,14 +384,14 @@ namespace BookingSystem.Presentation
         private void button3_Click_1(object sender, EventArgs e)
         {
 
-                PhumlaKamnandiHotelForm.phumlaKamnandi.Show();
-                this.Close();
-            
+            PhumlaKamnandiHotelForm.phumlaKamnandi.Show();
+            this.Close();
+
 
             //PhumlaKamnandiHotelForm kamnandiHotelForm = new PhumlaKamnandiHotelForm();
-            
+
             //kamnandiHotelForm.Show();
-            
+
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
